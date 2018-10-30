@@ -1,3 +1,4 @@
+package app.models;
 
 public class SeatShowtime {
 

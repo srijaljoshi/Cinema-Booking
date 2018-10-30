@@ -1,4 +1,4 @@
-
+package app.models;
 
 public class Seat {
 	private SeatShowtime sst;
