@@ -1,3 +1,5 @@
+package app.models;
+
 import java.sql.Timestamp;
 
 public class Movie {

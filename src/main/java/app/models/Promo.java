@@ -1,3 +1,5 @@
+package app.models;
+
 import java.util.Date;
 
 public class Promo {
