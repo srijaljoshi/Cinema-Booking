@@ -25,30 +25,27 @@ public class CustomerDaoImpl implements ICustomerDao {
 
     @Override
     public List<Customer> listAll() {
-        return jdbcTemplate.query("select * from Customer", new RowMapper<Customer>() {
+//        return jdbcTemplate.query("select * from Customer", new RowMapper<Customer>() {
+//
+//            @Override
+//            public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
+//                Customer c = new Customer();
+//                c.setId(rs.getInt("id"));
+//                c.setEmail(rs.getString("email"));
+//                c.setPassword(rs.getString("password"));
+//                c.setFirstName(rs.getString("firstName"));
+//                c.setLastName(rs.getString("lastName"));
+//                return c;
+//            }
+//        });
 
-            @Override
-            public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Customer c = new Customer();
-                c.setId(rs.getInt("id"));
-                c.setEmail(rs.getString("email"));
-                c.setPassword(rs.getString("password"));
-                c.setFirstName(rs.getString("firstName"));
-                c.setLastName(rs.getString("lastName"));
-                return c;
-            }
-        });
+        return sessionFactory.getCurrentSession().createQuery("from Customer").list();
     }
 
-    @Transactional
 	@Override
 	public void save(Customer customer) {
 //        System.out.println("Going to save the user!");
-//        Session session = sessionFactory.getCurrentSession();
-//        Transaction t = session.getTransaction();
-//        t.begin();
-//        session.persist(customer);
-//        t.commit();
+//        sessionFactory.getCurrentSession().persist(customer);
 //        System.out.println(">> User " + customer.getEmail() + " saved to database successfully!!!");
 
     }
