@@ -56,7 +56,7 @@ public class MovieShowing {
 		return hallId;
 	}
 	public void setShowDate(Date showDate) {
-		st.date=showDate;
+		st.setShowDate(showDate);
 		this.showDate = showDate;
 	}
 	public Date getShowDate() {

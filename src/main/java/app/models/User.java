@@ -1,5 +1,7 @@
 package app.models;
 
+import java.sql.Date;
+
 public class User {
 
 	void register(String email, String firstName, String lastName, String password) {
