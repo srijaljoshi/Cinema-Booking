@@ -1,18 +1,37 @@
 package app.models;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Address")
 public class Address {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
+	
+	@Column
 	String street;
+	
+	@Column
 	String city;
+	
+	@Column
 	String state;
+	
+	@Column
 	int zipCode;
+	
+	@Column
+	int customerID;
+	
 	
 	public Address() {
 		street = null;
 		city = null;
 		state = null;
-		zipCode = (Integer) null;
+		zipCode = 0;
 	}
 	
 	public Address(String street, String city, String state, int zipCode) {
@@ -51,5 +70,14 @@ public class Address {
 	}
 	public void setZipCode(int zipCode) {
 		this.zipCode = zipCode;
+	}
+
+	public int getCustomerID() {
+		return customerID;
+	}
+
+	public void setCustomerID(int customerID) {
+		this.customerID = customerID;
 	}	
+	
 }

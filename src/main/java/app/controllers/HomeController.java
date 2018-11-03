@@ -1,5 +1,6 @@
 package app.controllers;
 
+import app.models.Address;
 import app.models.Customer;
 import app.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,38 @@ public class HomeController {
 	@RequestMapping("/")
 	public String hello() {
 		return "index";
+	}
+	
+	@RequestMapping("/registration")
+	public String register() {
+		return "registration";
+	}
+	
+	@RequestMapping(value="registrationForm", method=RequestMethod.POST)
+	public String confirmation(@ModelAttribute("customer") Customer customer, @ModelAttribute("address")
+	Address address){
+		int customerId = customerService.save(customer);
+		//TODO add an error msg if something went wrong
+		if(customerId < 0)
+			System.out.println("ewor");
+		customerService.addAddress(address, customerId);
+		return "registrationConfirmation";
+	}
+	
+	@RequestMapping(value="login")
+	public String login(){
+		return "login";
+	}
+	
+	@RequestMapping(value="loginForm", method=RequestMethod.POST)
+	public String loginConfirmation(@RequestParam("email") String email, @RequestParam("password") String password) {
+		System.out.println("Trying to login with email: " + email + " and password: " + password);
+		Customer c = customerService.login(email, password);
+		if(c == null)
+			return "no such person";
+		else
+			return "registrationConfirmation";
+					
 	}
 	
 	@RequestMapping(value="addUser", method=RequestMethod.POST)
@@ -46,5 +79,7 @@ public class HomeController {
 		customerService.removeById(id);
 		return "redirect:/users";
 	}
+	
+
 	
 }

@@ -2,6 +2,7 @@ package app.models;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "Customer")
@@ -23,20 +24,15 @@ public class Customer extends User{
     @Column
     private String password;
 
-
-//    private CustomerStatus customerStatus;
-
     @Column
-    boolean enrolledForPromotions;
-	//CardPayment card;
-	//Booking booking;
-	//Address address;
-	
-	
-//	enum  UserStatus{ACTIVE, INACTIVE, SUSPENDED};
+    int enrolledForPromotions;
+    
+    ArrayList<Address> addresses;
+    
+    ArrayList<Booking> bookings;
 
     public Customer() {
-
+    	
     }
 	
 	public int getId() {
@@ -79,19 +75,13 @@ public class Customer extends User{
 		this.password = password;
 	}
 
-//	public CustomerStatus getCustomerStatus() {
-//		return customerStatus;
-//	}
-
-//	public void setCustomerStatus(CustomerStatus customerStatus) {
-//		this.customerStatus = customerStatus;
-//	}
-
-	public boolean isEnrolledForPromotions() {
+	public int isEnrolledForPromotions() {
 		return enrolledForPromotions;
 	}
 
-	public void setEnrolledForPromotions(boolean enrolledForPromotions) {
+	public void setEnrolledForPromotions(int enrolledForPromotions) {
 		this.enrolledForPromotions = enrolledForPromotions;
 	}
+	
+	
 }

@@ -1,17 +1,24 @@
 package app.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import app.models.Address;
 import app.models.Customer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 
 @Repository("customerDao")
 public class CustomerDaoImpl implements ICustomerDao {
@@ -42,15 +49,26 @@ public class CustomerDaoImpl implements ICustomerDao {
 
     @Transactional
 	@Override
-	public void save(Customer customer) {
-//        System.out.println("Going to save the user!");
-//        Session session = sessionFactory.getCurrentSession();
-//        Transaction t = session.getTransaction();
-//        t.begin();
-//        session.persist(customer);
-//        t.commit();
-//        System.out.println(">> User " + customer.getEmail() + " saved to database successfully!!!");
-
+	public int save(Customer customer) {
+    	System.out.println("insert a customer into DB");
+    	String INSERT_SQL = "insert into Customer (statusID, firstName, lastName, email, password, enrolledForPromotions) values(?,?,?,?,?,?)";
+    	KeyHolder keyHolder = new GeneratedKeyHolder();
+    	jdbcTemplate.update(
+    		new PreparedStatementCreator() {
+    			public PreparedStatement createPreparedStatement(java.sql.Connection connection) throws SQLException {
+    				PreparedStatement ps = connection.prepareStatement(INSERT_SQL, new String[] {"id"});
+    				ps.setInt(1, 1);
+    				ps.setString(2, customer.getFirstName());
+    				ps.setString(3, customer.getLastName());
+    				ps.setString(4, customer.getEmail());
+    				ps.setString(5, customer.getPassword());
+    				ps.setInt(6,0);
+    				return ps;
+    			}
+    		},
+    		keyHolder);
+    	System.out.println(keyHolder.getKey());
+    	return keyHolder.getKey().intValue();
     }
 
 	@Override
@@ -71,4 +89,30 @@ public class CustomerDaoImpl implements ICustomerDao {
 
 	}
 
+	/**
+	 * Function checks if a customer is already in the database and returns their information
+	 * @param email
+	 * @param password
+	 * @return customer object
+	 */
+	@Override
+	public Customer queryCustomer(String email, String password) {
+		System.out.println("querying customer");
+		String query = "select Id, firstName, lastName, statusID enrolledForPromotions from Customer where email = ? and password = ?";
+		Customer customer = this.jdbcTemplate.queryForObject(query, new Object[] {email, password}, new RowMapper<Customer>() {
+			 public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {	
+				 Customer customer = new Customer();
+				 customer.setFirstName(rs.getString("firstName"));
+				 customer.setLastName(rs.getString("lastName"));
+				 customer.setEmail(email);
+				 //customer.setId(rs.getInt("id"));
+				 customer.setEnrolledForPromotions(rs.getInt("enrolledForPromotions"));
+				 customer.setPassword(password);
+				 return customer;
+			 }
+			
+		});
+		System.out.println("done querying customer");
+		return customer;
+	}
 }
