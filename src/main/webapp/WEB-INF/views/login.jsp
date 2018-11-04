@@ -47,7 +47,7 @@
   <div class="container">
     <h1>Sign In</h1>
     <p>Welcome back valued customer! Sign in to purchase tickets and gain access to exclusive deals and offers.</p>
-    <form action="loginForm" method="post">
+    <form action="login" method="post">
       <br>
       <div class="getEP">
         <p>Enter your email address:</p>
