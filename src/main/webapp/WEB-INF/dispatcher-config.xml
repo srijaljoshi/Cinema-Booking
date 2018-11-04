@@ -42,8 +42,8 @@
 		<property name="driverClassName"
 			value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/cinemaEBooking" />
-		<property name="username" value="groot" />
-		<property name="password" value="iamgroot" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
 
 		<!-- Pool Properties -->
 		<property name="initialSize" value="5" />

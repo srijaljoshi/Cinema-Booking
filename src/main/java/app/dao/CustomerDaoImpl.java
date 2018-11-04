@@ -47,6 +47,10 @@ public class CustomerDaoImpl implements ICustomerDao {
         });
     }
 
+    /**
+     * This function save a customer into the database
+     * @param customer object
+     */
     @Transactional
 	@Override
 	public int save(Customer customer) {
@@ -98,7 +102,7 @@ public class CustomerDaoImpl implements ICustomerDao {
 	@Override
 	public Customer queryCustomer(String email, String password) {
 		System.out.println("querying customer");
-		String query = "select Id, firstName, lastName, statusID enrolledForPromotions from Customer where email = ? and password = ?";
+		String query = "select id, firstName, lastName, statusID, enrolledForPromotions from Customer where email = ? and password = ?";
 		Customer customer = this.jdbcTemplate.queryForObject(query, new Object[] {email, password}, new RowMapper<Customer>() {
 			 public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {	
 				 Customer customer = new Customer();

@@ -1,6 +1,10 @@
 package app.models;
 
 import javax.persistence.*;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
+
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -31,8 +35,20 @@ public class Customer extends User{
     
     ArrayList<Booking> bookings;
 
+    
     public Customer() {
     	
+    }
+    
+    
+    /**
+     * This method returns a customer to be cached for a singleton session
+     * @return new Customer
+     */
+    @Bean
+    @Scope("singleton")
+    public Customer customerSingleton() {
+    	return new Customer();
     }
 	
 	public int getId() {
