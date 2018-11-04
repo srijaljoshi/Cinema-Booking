@@ -32,8 +32,8 @@ public class CustomerLoginController {
 		Customer c = customerService.login(email, password);
 		session.setAttribute("customer", c);
 		if(c == null)
-			return "login";
+			return "redirect:/login";
 		else
-			return "test";
+			return "home";
 	}
 }
