@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import app.models.Address;
 import app.models.Customer;
 import org.hibernate.Session;
@@ -17,8 +19,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 
 @Repository("customerDao")
 public class CustomerDaoImpl implements ICustomerDao {
@@ -32,19 +32,21 @@ public class CustomerDaoImpl implements ICustomerDao {
 
     @Override
     public List<Customer> listAll() {
-        return jdbcTemplate.query("select * from Customer", new RowMapper<Customer>() {
+//        return jdbcTemplate.query("select * from Customer", new RowMapper<Customer>() {
+//
+//            @Override
+//            public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
+//                Customer c = new Customer();
+//                c.setId(rs.getInt("id"));
+//                c.setEmail(rs.getString("email"));
+//                c.setPassword(rs.getString("password"));
+//                c.setFirstName(rs.getString("firstName"));
+//                c.setLastName(rs.getString("lastName"));
+//                return c;
+//            }
+//        });
 
-            @Override
-            public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Customer c = new Customer();
-                c.setId(rs.getInt("id"));
-                c.setEmail(rs.getString("email"));
-                c.setPassword(rs.getString("password"));
-                c.setFirstName(rs.getString("firstName"));
-                c.setLastName(rs.getString("lastName"));
-                return c;
-            }
-        });
+        return sessionFactory.getCurrentSession().createQuery("from Customer").list();
     }
 
     /**
@@ -55,6 +57,7 @@ public class CustomerDaoImpl implements ICustomerDao {
 	@Override
 	public int save(Customer customer) {
     	System.out.println("insert a customer into DB");
+            //        sessionFactory.getCurrentSession().persist(customer);
     	String INSERT_SQL = "insert into Customer (statusID, firstName, lastName, email, password, enrolledForPromotions) values(?,?,?,?,?,?)";
     	KeyHolder keyHolder = new GeneratedKeyHolder();
     	jdbcTemplate.update(
@@ -109,7 +112,7 @@ public class CustomerDaoImpl implements ICustomerDao {
 				 customer.setFirstName(rs.getString("firstName"));
 				 customer.setLastName(rs.getString("lastName"));
 				 customer.setEmail(email);
-				 //customer.setId(rs.getInt("id"));
+				 customer.setId(rs.getInt("id"));
 				 customer.setEnrolledForPromotions(rs.getInt("enrolledForPromotions"));
 				 customer.setPassword(password);
 				 return customer;

@@ -38,21 +38,6 @@ public class HomeController {
 		return "registrationConfirmation";
 	}
 	
-	@RequestMapping(value="login")
-	public String login(){
-		return "login";
-	}
-	
-	@RequestMapping(value="loginForm", method=RequestMethod.POST)
-	public String loginConfirmation(@RequestParam("email") String email, @RequestParam("password") String password) {
-		System.out.println("Trying to login with email: " + email + " and password: " + password);
-		Customer c = customerService.login(email, password);
-		if(c == null)
-			return "no such person";
-		else
-			return "registrationConfirmation";
-					
-	}
 	
 	@RequestMapping(value="addUser", method=RequestMethod.POST)
 	public String addCustomer(@ModelAttribute("customer") Customer customer) {

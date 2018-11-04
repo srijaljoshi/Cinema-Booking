@@ -1,0 +1,40 @@
+.selected{
+  background-color: blue;
+}
+
+table{
+  align: center;
+  width: 30em;
+  height: 30em;
+}
+
+td{
+    text-align: center;
+}
+
+body{
+  background: url("background.jpg");
+}
+
+.unselected:hover{
+  background-color: #C0C0C0;
+}
+
+.flex{
+  text-align: center;
+}
+
+.button {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  width: 15%;
+}
+
+.button:hover {
+    opacity: 1;
+}
