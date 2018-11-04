@@ -2,6 +2,9 @@ package app.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+import app.models.Address;
 import app.models.Customer;
 
 /**
@@ -22,8 +25,9 @@ public interface ICustomerDao {
 	/**
 	 * Save one particular customer to the database
 	 * @param customer object
+	 * @return 
 	 */
-	public void save(Customer customer); //Post
+	public int save(Customer customer); //Post
 	
 	/**
 	 * Finds a customer with a particular id
@@ -35,5 +39,13 @@ public interface ICustomerDao {
 	public void update(Customer customer);
 	
 	public void removeById(int id);
-
+	
+	/**
+	 * Method return the Customer object when customer logs in or returns Null
+	 * @param email
+	 * @param password
+	 * @return Customer
+	 */
+	public Customer queryCustomer(String email, String password);
+	
 }
