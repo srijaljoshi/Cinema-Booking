@@ -30,8 +30,8 @@ public class CustomerLoginController {
 		Customer c = customerService.login(email, password);
 		
 		if(c == null)
-			return "no such person";
+			return "redirect:/login";
 		else
-			return "registrationConfirmation";
+			return "registration";
 	}
 }
