@@ -22,23 +22,6 @@ public class HomeController {
 		return "index";
 	}
 	
-	@RequestMapping("/registration")
-	public String register() {
-		return "registration";
-	}
-	
-	@RequestMapping(value="registrationForm", method=RequestMethod.POST)
-	public String confirmation(@ModelAttribute("customer") Customer customer, @ModelAttribute("address")
-	Address address){
-		int customerId = customerService.save(customer);
-		//TODO add an error msg if something went wrong
-		if(customerId < 0)
-			System.out.println("ewor");
-		customerService.addAddress(address, customerId);
-		return "registrationConfirmation";
-	}
-	
-	
 	@RequestMapping(value="addUser", method=RequestMethod.POST)
 	public String addCustomer(@ModelAttribute("customer") Customer customer) {
 		customerService.save(customer);
