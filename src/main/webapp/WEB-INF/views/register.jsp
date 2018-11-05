@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <form action="registrationForm" method="post">
+        <form action="register" method="post">
             <div class="container form-group">
                 <p>Please fill out this form to create an account
                 <p>
