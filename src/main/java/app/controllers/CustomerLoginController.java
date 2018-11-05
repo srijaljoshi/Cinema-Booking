@@ -26,6 +26,7 @@ public class CustomerLoginController {
 	
 	@Autowired
 	private ICustomerService customerService;
+
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(){
 		return "login";
