@@ -11,11 +11,11 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-public class CustomerServiceImpl implements ICustomerService{
+public class CustomerServiceImpl implements ICustomerService {
 
     @Autowired
     private ICustomerDao customerDao;
-    
+
     @Autowired
     private IAddressDao addressDao;
 
@@ -42,16 +42,16 @@ public class CustomerServiceImpl implements ICustomerService{
 
     @Override
     public void removeById(int id) {
-    	
-    }
-    
-    public void addAddress(Address address, int id) {
-    	addressDao.save(address, id);
+
     }
 
-	@Override
-	public Customer login(String email, String password) {
-		// TODO Auto-generated method stub
-		return customerDao.queryCustomer(email, password);
-	}
+    public void addAddress(Address address, int id) {
+        addressDao.save(address, id);
+    }
+
+    @Override
+    public Customer login(String email, String password) {
+        // TODO Auto-generated method stub
+        return customerDao.queryCustomer(email, password);
+    }
 }

@@ -1,12 +1,10 @@
 package app.controllers;
 
-import app.models.Address;
 import app.models.Customer;
 import app.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,38 +13,47 @@ import java.util.List;
 @RequestMapping("/")
 public class HomeController {
 
-	@Autowired
-	private ICustomerService customerService;
+    @Autowired
+    private ICustomerService customerService;
 
-	@RequestMapping("/")
-	public String hello() {
-		return "home";
-	}
-	
-	@RequestMapping(value="addUser", method=RequestMethod.POST)
-	public String addCustomer(@ModelAttribute("customer") Customer customer) {
-		customerService.save(customer);
-		return "redirect:/users";
-	}
-	
-	@RequestMapping("/users") // display all users
-	public String listAllUsers(Model model) {
-		List<Customer> customers = customerService.listUsers();
-		model.addAttribute("customers", customers);
-		System.out.println(">>> Extracted the following users: " + customers);
-		return "customers";
-	}
-	
-	@RequestMapping("/user/{id}")
-	public @ResponseBody String viewUser(@PathVariable("id") int id) {
-		System.out.println(">>> Id from view: " + id);
-		return customerService.findById(id).toString();
-	}
-	
-	@RequestMapping(value="/users/{id}/delete", method=RequestMethod.GET)
-	public String deleteUser(@PathVariable("id") int id) {
-		customerService.removeById(id);
-		return "redirect:/users";
-	}
+    @RequestMapping("/")
+    public String hello() {
+        return "home";
+    }
+
+    @RequestMapping(value = "addUser", method = RequestMethod.POST)
+    public String addCustomer(@ModelAttribute("customer") Customer customer) {
+        customerService.save(customer);
+        return "redirect:/users";
+    }
+
+    @RequestMapping("/users") // display all users
+    public String listAllUsers(Model model) {
+        List<Customer> customers = customerService.listUsers();
+        model.addAttribute("customers", customers);
+        System.out.println(">>> Extracted the following users: " + customers);
+        return "customers";
+    }
+
+    @RequestMapping("/user/{id}")
+    public @ResponseBody
+    String viewUser(@PathVariable("id") int id) {
+        System.out.println(">>> Id from view: " + id);
+        return customerService.findById(id).toString();
+    }
+
+    @RequestMapping(value = "/users/{id}/delete", method = RequestMethod.GET)
+    public String deleteUser(@PathVariable("id") int id) {
+        customerService.removeById(id);
+        return "redirect:/users";
+    }
+
+
+    // FOR RANDOM TESTS
+    @RequestMapping(value = "/test")
+    public String test() {
+        return "test";
+    }
+
 
 }
