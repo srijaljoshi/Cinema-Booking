@@ -1,11 +1,25 @@
 package app.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Admin")
 public class Admin {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
+
+    @Column
     String email;
+
+    @Column
     String password;
+
+    @Column
     String firstName;
+
+    @Column
     String lastName;
 
 
