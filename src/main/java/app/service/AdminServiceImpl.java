@@ -19,12 +19,15 @@ public class AdminServiceImpl implements IAdminService {
     private IAdminDao adminDao;
 
     @Autowired
+    private ICustomerDao customerDao;
+
+    @Autowired
     private IAddressDao addressDao;
 
     @Transactional
     @Override
     public List<Customer> listCustomers() {
-        return adminDao.listAll();
+        return customerDao.listAll();
     }
 
     @Override

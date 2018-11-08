@@ -108,7 +108,7 @@
                 <br>
                 <label for="state"><b>State:</b></label>
                 <br>
-                <input type="text" class="form-control" name="State" placeholder="State" required>
+                <input type="text" class="form-control" name="state" placeholder="State" required>
                 <br>
                 <br>
                 <label for="zipCode"><b>Zip Code:</b></label>

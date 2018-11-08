@@ -38,7 +38,7 @@
             <div class="navbar-brand"><a href="#" class="no-underline"><span>Movie Booking</span></a></div>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Manage Movies</a></li>
-                <li><a href="">Manage Users</a></li>
+                <li><a href="/a/users">Manage Users</a></li>
                 <li><a href="">Mange Halls</a></li>
                 <li><a href="">Manage Showtimes</a></li>
                 <li><a href="">Manage Seats</a></li>

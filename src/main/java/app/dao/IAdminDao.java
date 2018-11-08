@@ -13,14 +13,6 @@ import java.util.List;
  */
 
 public interface IAdminDao {
-
-    /**
-     * Retrive a list of all customers from the database
-     *
-     * @return List<Cutomer>
-     */
-    public List<Customer> listAll();
-
     /**
      * Save one particular customer to the database
      *

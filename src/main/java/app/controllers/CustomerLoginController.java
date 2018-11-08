@@ -76,6 +76,7 @@ public class CustomerLoginController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String confirmation(@ModelAttribute("customer") Customer customer, @ModelAttribute("address") Address address) {
         int customerId = customerService.save(customer);
+        System.out.println(address.getState());
         if (customerId < 0) {
             System.out.println(">>> Error creating the user!");
         } else {

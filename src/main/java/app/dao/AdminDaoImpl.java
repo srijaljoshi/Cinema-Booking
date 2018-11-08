@@ -28,26 +28,7 @@ public class AdminDaoImpl implements IAdminDao {
 
     @Autowired
     private SessionFactory sessionFactory;
-
-    @Override
-    public List<Customer> listAll() {
-//        return jdbcTemplate.query("select * from Customer", new RowMapper<Customer>() {
-//
-//            @Override
-//            public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
-//                Customer c = new Customer();
-//                c.setId(rs.getInt("id"));
-//                c.setEmail(rs.getString("email"));
-//                c.setPassword(rs.getString("password"));
-//                c.setFirstName(rs.getString("firstName"));
-//                c.setLastName(rs.getString("lastName"));
-//                return c;
-//            }
-//        });
-
-        return sessionFactory.getCurrentSession().createQuery("from Customer").list();
-    }
-
+    
     /**
      * This function save a customer into the database
      *
