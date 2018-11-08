@@ -29,7 +29,7 @@ public class CustomerLoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(HttpSession session) {
-        if (session.getAttribute("customer") != null) // customre session in memory so redirect to root
+        if (session.getAttribute("customer") != null) // customer session in memory so redirect to root
             return "redirect:";
         return "login";
     }
@@ -62,10 +62,13 @@ public class CustomerLoginController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String invalidate(HttpSession session, Model model) {
-        System.out.println(">>> Logging out as user " + session.getAttribute("customer"));
-        session.invalidate();
-        model.addAttribute("logout", "SUCCESS");
-        return "home";
+        if(session.getAttribute("customer") != null) {//if customer session not expired
+            System.out.println(">>> Logging out as user " + session.getAttribute("customer"));
+            session.invalidate();
+            model.addAttribute("logout", "SUCCESS");
+            return "home";
+        }
+        return "redirect:/";
     }
 
     @RequestMapping("/register")
@@ -74,9 +77,24 @@ public class CustomerLoginController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String confirmation(@ModelAttribute("customer") Customer customer, @ModelAttribute("address") Address address) {
+    public String confirmation(@ModelAttribute("customer") Customer customer,
+                               @ModelAttribute("address") Address address,
+                               @RequestParam(name="promo", required = false) String enrollForPromotions) {
+
+        System.out.println(">>> Promo checkbox value = " + enrollForPromotions);
+        if(enrollForPromotions == null) {
+            customer.setEnrolledForPromotions(0); // did not subscribe
+        }
+        else if(enrollForPromotions.equals("yes")) {
+            System.out.println(">>> Customer subscribed!!!");
+            customer.setEnrolledForPromotions(1); // subscribed
+        } else {
+            System.out.println(">>> Customer DID NOT subscribe!!!");
+            customer.setEnrolledForPromotions(0); // did not subscribe
+        }
+
         int customerId = customerService.save(customer);
-        System.out.println(address.getState());
+
         if (customerId < 0) {
             System.out.println(">>> Error creating the user!");
         } else {

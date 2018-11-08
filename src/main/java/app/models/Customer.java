@@ -90,7 +90,7 @@ public class Customer extends User {
         this.password = password;
     }
 
-    public int isEnrolledForPromotions() {
+    public int getEnrolledForPromotions() {
         return enrolledForPromotions;
     }
 

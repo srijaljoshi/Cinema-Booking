@@ -24,9 +24,9 @@ public class AdminController {
 
     @RequestMapping("/dashboard")
     public String dashboard(HttpSession session) {
-        if(session.getAttribute("admin") != null)
+        if(session.getAttribute("admin") != null) // if admin session running
             return "admin-dashboard";
-        return "403";
+        return "403"; // else can't access
     }
 
     @RequestMapping(value="/login", method= RequestMethod.GET)

@@ -66,7 +66,7 @@ public class CustomerDaoImpl implements ICustomerDao {
                         ps.setString(3, customer.getLastName());
                         ps.setString(4, customer.getEmail());
                         ps.setString(5, customer.getPassword());
-                        ps.setInt(6, 0);
+                        ps.setInt(6, customer.getEnrolledForPromotions());
                         return ps;
                     }
                 },
@@ -102,7 +102,7 @@ public class CustomerDaoImpl implements ICustomerDao {
      */
     @Override
     public Customer queryCustomer(String email, String password) {
-        System.out.println("querying customer");
+        System.out.println(">>> querying customer");
         String query = "select id, firstName, lastName, statusID, enrolledForPromotions from Customer where email = ? and password = ?";
         Customer customer = this.jdbcTemplate.queryForObject(query, new Object[]{email, password}, new RowMapper<Customer>() {
             public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {

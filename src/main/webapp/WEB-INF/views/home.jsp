@@ -25,6 +25,7 @@
 
     <% if(request.getAttribute("logout") != null) { %>
         <%= "Log out status: " + request.getAttribute("logout") %>
+        <% request.removeAttribute("logout"); %>
     <% } %>
     <div class="jumbotron">
         <div class="content">
