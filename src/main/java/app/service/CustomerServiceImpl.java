@@ -40,9 +40,10 @@ public class CustomerServiceImpl implements ICustomerService {
     	 customerDao.update(customer);
     }
 
+    @Transactional
     @Override
     public void removeById(int id) {
-
+        customerDao.removeById(id);
     }
 
     @Override

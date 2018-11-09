@@ -118,7 +118,7 @@ public class CustomerDaoImpl implements ICustomerDao {
     @Override
     public void removeById(int id) {
         // TODO Auto-generated method stub
-
+        sessionFactory.getCurrentSession().createQuery("delete from Customer where id=:uid").setInteger("uid", id).executeUpdate();
     }
 
     /**

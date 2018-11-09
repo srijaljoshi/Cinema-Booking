@@ -28,7 +28,7 @@
             <td>${customer.email}</td>
             <td>${customer.firstName} ${customer.lastName}</td>
             <td>${customer.password}</td>
-            <td><a href="/user/${customer.id}/delete"
+            <td><a href="/users/${customer.id}/delete"
                    onclick="confirmDelete()">Delete</a></td>
         </tr>
 
