@@ -28,6 +28,12 @@ public class Customer extends User {
 
     @Column
     int enrolledForPromotions;
+    
+    @Column
+    String token;
+    
+    @Column
+    int statusID;
 
     ArrayList<Address> addresses;
 
@@ -98,5 +104,25 @@ public class Customer extends User {
         this.enrolledForPromotions = enrolledForPromotions;
     }
 
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+
+	public int getStatusID() {
+		return statusID;
+	}
+
+
+	public void setStatusID(int statusID) {
+		this.statusID = statusID;
+	}
+
+    
 
 }

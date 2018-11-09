@@ -51,7 +51,10 @@
             <input type="submit" class="btn btn-sm btn-primary" value="Log In">
             <input type="submit" class="btn btn-sm btn-danger" value="Cancel">
         </form>
+        <br>
+        <a href="/u/forgot-password" >Forgot Password</a>
     </div>
+    
 </body>
 
 </html>

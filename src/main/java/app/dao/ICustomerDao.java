@@ -48,5 +48,13 @@ public interface ICustomerDao {
      * @return Customer
      */
     public Customer queryCustomer(String email, String password);
+    
+    public String updateStatus(Customer customer);
+
+	public Customer findByEmail(String email);
+	
+	public String updatePassword(Customer customer);
+	
+	public String updateToken(Customer customer);
 
 }

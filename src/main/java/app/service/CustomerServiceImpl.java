@@ -32,12 +32,12 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public Customer findById(int id) {
-        return null;
+        return customerDao.findById(id);
     }
 
     @Override
     public void update(Customer customer) {
-
+    	 customerDao.update(customer);
     }
 
     @Override
@@ -45,6 +45,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     }
 
+    @Override
     public void addAddress(Address address, int id) {
         addressDao.save(address, id);
     }
@@ -54,4 +55,24 @@ public class CustomerServiceImpl implements ICustomerService {
         // TODO Auto-generated method stub
         return customerDao.queryCustomer(email, password);
     }
+    
+    @Override
+    public String updateStatus(Customer customer) {
+    	return customerDao.updateStatus(customer);
+    }
+
+	@Override
+	public Customer findByEmail(String email) {
+		return customerDao.findByEmail(email);
+	}
+
+	@Override
+	public String updatePassword(Customer customer) {
+		return customerDao.updatePassword(customer);
+	}
+
+	@Override
+	public String updateToken(Customer customer) {
+		return customerDao.updateToken(customer);
+	}
 }

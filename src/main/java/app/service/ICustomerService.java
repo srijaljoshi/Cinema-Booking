@@ -14,10 +14,21 @@ public interface ICustomerService {
     public Customer findById(int id); // GET
 
     public void update(Customer customer);
+    
+    public String updatePassword(Customer customer);
+    
+    public String updateToken(Customer customer);
 
     public void removeById(int id);
 
     public void addAddress(Address address, int id);
 
     public Customer login(String email, String password);
+    
+    public String updateStatus(Customer customer);
+
+	public Customer findByEmail(String email);
+	
+	
+	
 }
