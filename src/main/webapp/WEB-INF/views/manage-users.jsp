@@ -23,7 +23,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3">
-                        <input type="text" class="form-control" placeholder="Search User"> <br>
+                        <input type="text" id="myInput" class="form-control" placeholder="Search User"> <br>
                         <input type="submit" class="btn btn-primary btn-sm">
                     </div>
                 </div>
@@ -31,7 +31,7 @@
         </form>
 
         <br><br>
-        <table class="table table-hover">
+        <table class="table table-hover" id="myTable">
             <thead>
             <tr>
                 <th scope="col">id</th>
@@ -56,5 +56,6 @@
         </table>
     </div>
 
+    <script src="<c:url value="/resources/js/search.js" />" type="application/javascript"></script>
 </body>
 </html>

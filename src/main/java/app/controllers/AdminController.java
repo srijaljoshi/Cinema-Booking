@@ -83,10 +83,14 @@ public class AdminController {
      * @return movies view
      */
     @RequestMapping("/movies")
-    public String manageMovies(Model model) {
-        List<Movie> movies = adminService.listMovies();
-        model.addAttribute("movies", movies);
-        return "manage-movies";
+    public String manageMovies(HttpSession session, Model model) {
+        if (session.getAttribute("admin") != null) {
+            List<Movie> movies = adminService.listMovies();
+            model.addAttribute("movies", movies);
+            return "manage-movies";
+        }
+        // else
+        return "redirect:login";
     }
 
 

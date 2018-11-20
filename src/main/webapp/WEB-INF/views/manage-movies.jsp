@@ -23,7 +23,7 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-md-3">
-                    <input type="text" class="form-control" placeholder="Search Movie"> <br>
+                    <input type="text" id="myInput" onkeyup="myFunction()"  class="form-control" placeholder="Search Movie"> <br>
                     <input type="submit" class="btn btn-primary btn-sm">
                 </div>
             </div>
@@ -31,7 +31,7 @@
     </form>
 
     <br><br>
-    <table class="table table-hover">
+    <table class="table table-hover" id="myTable">
         <thead>
         <tr>
             <th scope="col">id</th>
@@ -56,5 +56,29 @@
     </table>
 </div>
 
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = ""; //reset display css property if filtered and is in the view
+                    console.log("Filtered " + i);
+                } else {
+                    // If not what the user wanted then set display property to none to make it invisible
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 </body>
 </html>
