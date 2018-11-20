@@ -1,18 +1,25 @@
 package app.models;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+@Entity
+@Table(name = "Movie")
 public class Movie {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
     private String title;
-    private int ratingID;
     private String trailerVideo;
     private String trailerPicture;
     private String director;
+    private String rating;
     private String synopsis;
     private String review;
     private String producer;
-    private Actor cast;    //map to actor
+    private String cast;    //map to actor
     private Timestamp duration;        //https://www.mkyong.com/java/how-to-get-current-timestamps-in-java/
 
     public void displayInfo() {
@@ -25,14 +32,6 @@ public class Movie {
 
     public String getTitle() {
         return title;
-    }
-
-    public void setRatingID(int ratingID) {
-        this.ratingID = ratingID;
-    }
-
-    public int getRatingID() {
-        return ratingID;
     }
 
     public void setTrailerVideo(String trailerVideo) {
@@ -83,11 +82,11 @@ public class Movie {
         return producer;
     }
 
-    public void setCast(Actor actor) {
-        this.cast = actor;
+    public void setCast(String cast) {
+        this.cast = cast;
     }
 
-    public Actor getCast() {
+    public String getCast() {
         return cast;
     }
 
@@ -99,4 +98,19 @@ public class Movie {
         return duration;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
 }

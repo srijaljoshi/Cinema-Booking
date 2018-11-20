@@ -2,6 +2,7 @@ package app.controllers;
 
 import app.models.Admin;
 import app.models.Customer;
+import app.models.Movie;
 import app.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,6 +75,18 @@ public class AdminController {
         List<Customer> customers = adminService.listCustomers();
         model.addAttribute("customers", customers);
         return "manage-users";
+    }
+
+    /**
+     * Get the movies from the database for the admin to manage
+     * @param model
+     * @return movies view
+     */
+    @RequestMapping("/movies")
+    public String manageMovies(Model model) {
+        List<Movie> movies = adminService.listMovies();
+        model.addAttribute("movies", movies);
+        return "manage-movies";
     }
 
 

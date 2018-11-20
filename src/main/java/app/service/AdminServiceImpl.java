@@ -3,9 +3,11 @@ package app.service;
 import app.dao.IAddressDao;
 import app.dao.IAdminDao;
 import app.dao.ICustomerDao;
+import app.dao.IMovieDao;
 import app.models.Address;
 import app.models.Admin;
 import app.models.Customer;
+import app.models.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,9 @@ public class AdminServiceImpl implements IAdminService {
     @Autowired
     private IAddressDao addressDao;
 
+    @Autowired
+    private IMovieDao movieDao;
+
     @Transactional
     @Override
     public List<Customer> listCustomers() {
@@ -38,6 +43,12 @@ public class AdminServiceImpl implements IAdminService {
     @Override
     public Customer findById(int id) {
         return null;
+    }
+
+    @Transactional
+    @Override
+    public List<Movie> listMovies() {
+        return movieDao.listAll();
     }
 
 
