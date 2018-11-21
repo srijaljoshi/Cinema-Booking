@@ -17,4 +17,9 @@ public class MovieDaoImpl implements IMovieDao {
     public List<Movie> listAll() {
         return sessionFactory.getCurrentSession().createQuery("from Movie").list();
     }
+
+    @Override
+    public void delete(int id) {
+        sessionFactory.getCurrentSession().createQuery("delete from Movie where id=:mid").setInteger("mid", id).executeUpdate();
+    }
 }

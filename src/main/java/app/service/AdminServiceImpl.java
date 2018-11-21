@@ -47,8 +47,32 @@ public class AdminServiceImpl implements IAdminService {
 
     @Transactional
     @Override
+    public void suspend(int id) {
+        customerDao.suspend(id);
+    }
+
+    @Transactional
+    @Override
+    public void reactivateUser(int id) {
+        customerDao.reactivate(id);
+    }
+
+    @Transactional
+    @Override
     public List<Movie> listMovies() {
         return movieDao.listAll();
+    }
+
+    @Transactional
+    @Override
+    public int deleteMovie(int id) {
+        try {
+            movieDao.delete(id);
+            return 1;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return -1;
+        }
     }
 
 

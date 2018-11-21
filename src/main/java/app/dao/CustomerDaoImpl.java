@@ -121,6 +121,19 @@ public class CustomerDaoImpl implements ICustomerDao {
         sessionFactory.getCurrentSession().createQuery("delete from Customer where id=:uid").setInteger("uid", id).executeUpdate();
     }
 
+    @Override
+    public void suspend(int id) {
+        int res = sessionFactory.getCurrentSession().createQuery("update Customer set statusID = 2 where id = :uid").setParameter("uid", id).executeUpdate();
+        System.out.println(">>> Update status of customer result: " + res);
+    }
+
+    @Override
+    public void reactivate(int id) {
+
+        int res = sessionFactory.getCurrentSession().createQuery("update Customer set statusID = 1 where id = :uid").setParameter("uid", id).executeUpdate();
+        System.out.println(">>> Update status of customer result: " + res);
+    }
+
     /**
      * Function checks if a customer is already in the database and returns their information
      *

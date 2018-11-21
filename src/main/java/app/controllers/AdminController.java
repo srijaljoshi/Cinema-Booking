@@ -5,11 +5,10 @@ import app.models.Customer;
 import app.models.Movie;
 import app.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -92,6 +91,30 @@ public class AdminController {
         // else
         return "redirect:login";
     }
+
+    @DeleteMapping("/movies/{id}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public String deleteMovie(@PathVariable("id") Integer id) {
+
+        int deletedStatus = adminService.deleteMovie(id);
+        System.out.println(">>> Deleted with status: " + deletedStatus);
+        return "redirect:movies";
+    }
+
+    @RequestMapping("/users/{id}/suspend")
+    public String suspendUser(@PathVariable("id") int id) {
+
+        adminService.suspend(id);
+        return "redirect:/a/users";
+    }
+
+    @RequestMapping("/users/{id}/reactivate")
+    public String reactivateUser(@PathVariable("id") int id) {
+
+        adminService.reactivateUser(id);
+        return "redirect:/a/users";
+    }
+
 
 
 }

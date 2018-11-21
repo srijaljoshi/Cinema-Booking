@@ -47,9 +47,15 @@
                     <th scope="row">${customer.id}</th>
                     <td>${customer.firstName}</td>
                     <td>${customer.lastName}</td>
-                    <td>${customer.email}</td>
+                    <td>${customer.statusID}</td>
                     <td><input class="btn btn-primary btn-sm" type="submit" value="Edit"></td>
-                    <td><input class="btn btn-danger btn-sm" type="submit" value="Suspend"></td>
+                    <c:if test="${customer.statusID == 1}" >
+                        <td><a href="/a/users/${customer.id}/suspend" class="btn btn-danger btn-sm">Suspend</a></td>
+                    </c:if>
+                    <c:if test="${customer.statusID == 2}" >
+                        <td><a href="/a/users/${customer.id}/reactivate" class="btn btn-success btn-sm">Activate</a></td>
+                    </c:if>
+
                 </tr>
             </c:forEach>
             </tbody>

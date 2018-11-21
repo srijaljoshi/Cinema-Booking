@@ -13,11 +13,13 @@ public interface IAdminService {
     public int addCustomer(Customer customer); //Post
     public Customer findById(int id); // GET
 
-
+    void suspend(int id);
+    void reactivateUser(int id);
     /*
     Movies management
      */
     public List<Movie> listMovies();
+    int deleteMovie(int id);
 
     public Admin login(String email, String password);
 }
