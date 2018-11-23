@@ -22,4 +22,9 @@ public class MovieDaoImpl implements IMovieDao {
     public void delete(int id) {
         sessionFactory.getCurrentSession().createQuery("delete from Movie where id=:mid").setInteger("mid", id).executeUpdate();
     }
+
+    @Override
+    public void save(Movie m) {
+        sessionFactory.getCurrentSession().persist(m);
+    }
 }

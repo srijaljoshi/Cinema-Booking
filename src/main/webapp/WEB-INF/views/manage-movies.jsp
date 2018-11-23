@@ -4,11 +4,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/css/template.css" />">
+
+    <jsp:include page="template-imports.jsp" />
     <title>Manage Users</title>
 </head>
 
@@ -18,13 +15,61 @@
 
 <br><br><br><br><br>
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Add new movie</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="newMovieForm" action="/a/movies/new" method="post">
+                    <div class="form-group">
+                        <label>Movie Title</label>
+                        <input type="text" name="title" class="form-control" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <label>Director</label>
+                        <input type="text" name="director" class="form-control" placeholder="Director">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectRating">Rating</label>
+                        <select name="rating" class="form-control" id="selectRating">
+                            <option>G</option>
+                            <option>PG</option>
+                            <option>R</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn-sm btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="container">
+
     <form action="#">
         <div class="form-group">
             <div class="row">
                 <div class="col-md-3">
                     <input type="text" id="myInput" class="form-control" placeholder="Search Movie"> <br>
                     <input type="submit" class="btn btn-primary btn-sm">
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                        Add new Movie
+                    </button>
+
                 </div>
             </div>
         </div>

@@ -115,6 +115,11 @@ public class AdminController {
         return "redirect:/a/users";
     }
 
-
+    @RequestMapping(value = "movies/new", method = RequestMethod.POST)
+    public String addNewMovie(@ModelAttribute("movie") Movie m) {
+        System.out.println(">>>Got movie from form: " + m.getTitle());
+        adminService.saveMovie(m);
+        return "redirect:/a/movies";
+    }
 
 }

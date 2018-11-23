@@ -46,3 +46,31 @@ document.getElementById("btn-delete-movie").onclick = function deleteMovie(event
     console.log(">>> Inside deleteMovie AJAX request opened!!!")
     xhr.send();
 }
+
+
+$('#myFormSubmit').click(function(e){
+    e.preventDefault();
+    console.log("Clicked");
+    alert($('#myField').val());
+    /*
+    $.post('http://path/to/post',
+       $('#myForm').serialize(),
+       function(data, status, xhr){
+         // do something here with response;
+       });
+    */
+});
+
+
+// $('#newMovieForm').submit(function (e) {
+//     e.preventDefault();
+//     console.log($( this ).serialize());
+//     // $.ajax(
+//     //     method: 'GET',
+//     //
+//     // );
+//     $.post("/a/movies/new", $('newMovieForm').serialize(), function(data, status){
+//         // console.log("\nStatus: " + status);
+//     });
+//
+// });

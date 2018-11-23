@@ -22,4 +22,6 @@ public interface IAdminService {
     int deleteMovie(int id);
 
     public Admin login(String email, String password);
+
+    void saveMovie(Movie m);
 }

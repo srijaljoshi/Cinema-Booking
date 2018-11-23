@@ -86,4 +86,10 @@ public class AdminServiceImpl implements IAdminService {
         // TODO Auto-generated method stub
         return adminDao.getAdmin(email, password);
     }
+
+    @Transactional
+    @Override
+    public void saveMovie(Movie m) {
+        movieDao.save(m);
+    }
 }
