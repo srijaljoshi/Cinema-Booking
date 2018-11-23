@@ -88,13 +88,13 @@
         <tbody>
 
         <c:forEach items="${movies}" var="movie" >
-            <tr>
+            <tr id="${movie.id}">
                 <th scope="row" id="movieID">${movie.id}</th>
                 <td>${movie.title}</td>
                 <td>${movie.director}</td>
                 <td>${movie.rating}</td>
                 <td><a class="btn btn-primary btn-sm" id="btn-edit-movie">Edit</a></td>
-                <td><a href="#" class="btn btn-danger btn-sm" id="btn-delete-movie">Delete</a></td>
+                <td><a href="#" class="btn btn-danger btn-sm btn-delete-movie">Delete</a></td>
             </tr>
         </c:forEach>
         </tbody>

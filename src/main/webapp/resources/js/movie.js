@@ -26,40 +26,45 @@ document.getElementById("myInput").onkeyup = function() {
 /**
  * AJAX request for deleting movie
  */
-document.getElementById("btn-delete-movie").onclick = function deleteMovie(event) {
-    var xhr = new XMLHttpRequest();
-    var id = document.getElementById("movieID").innerText;
-    console.log(">>> Deleting movie with id: " + id);
 
-    var tr = document.getElementById("myTable").getElementsByTagName("tr");
-
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-
-            // here you need to write what to do after the request is completed
-            // https://www.w3schools.com/xml/ajax_xmlhttprequest_create.asp
-            tr[parseInt(id) - 1].style.display = "none";
-            // document.getElementById("movie" + id).style.display = none;
-        }
-    };
-    xhr.open("DELETE", "/a/movies/" + id, true);
-    console.log(">>> Inside deleteMovie AJAX request opened!!!")
-    xhr.send();
-}
-
-
-$('#myFormSubmit').click(function(e){
+$(".btn-delete-movie").click(function (e) {
     e.preventDefault();
-    console.log("Clicked");
-    alert($('#myField').val());
-    /*
-    $.post('http://path/to/post',
-       $('#myForm').serialize(),
-       function(data, status, xhr){
-         // do something here with response;
-       });
-    */
+    var id = document.getElementById("movieID").innerText;
+    var tr = $(this).closest('tr');
+    var del_id = tr.attr('id');
+    $.ajax({
+        url: "/a/movies/" + del_id,
+        method: "DELETE",
+        success: function (data) {
+            alert("Deleted a movie with id = " + del_id);
+            tr.remove();
+        }
+    });
+
 });
+// document.getElementById("btn-delete-movie").onclick = function deleteMovie(event) {
+//     var xhr = new XMLHttpRequest();
+//     var id = document.getElementById("movieID").innerText;
+//     console.log(">>> Deleting movie with id: " + id);
+//
+//     var tr = document.getElementById("myTable").getElementsByTagName("tr");
+//
+//     xhr.onreadystatechange = function() {
+//         if (this.readyState == 4 && this.status == 200) {
+//
+//             // here you need to write what to do after the request is completed
+//             // https://www.w3schools.com/xml/ajax_xmlhttprequest_create.asp
+//             tr[parseInt(id) - 1].style.display = "none";
+//             // document.getElementById("movie" + id).style.display = none;
+//         }
+//     };
+//     xhr.open("DELETE", "/a/movies/" + id, true);
+//     console.log(">>> Inside deleteMovie AJAX request opened!!!")
+//     xhr.send();
+// }
+
+
+
 
 
 // $('#newMovieForm').submit(function (e) {
