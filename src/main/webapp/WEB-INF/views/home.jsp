@@ -5,12 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/css/template.css" />">
+    <jsp:include page="template-imports.jsp" />
     <title>Cinema EBooking</title>
 </head>
 <body>
@@ -18,15 +13,15 @@
 
     <%--<p>Customer: ${customer.firstName}</p>--%>
 
-    <c:if test="${logout} != null" >
-        <%--TODO: ADD A CSS CLASS --%>
-        <p class="flash-message">Logged out: ${logout}</p>
-    </c:if>
+    <%--<c:if test="${logout} != null" >--%>
+        <%--&lt;%&ndash;TODO: ADD A CSS CLASS &ndash;%&gt;--%>
+        <%--<p class="flash-message">Logged out: ${logout}</p>--%>
+    <%--</c:if>--%>
 
-    <% if(request.getAttribute("logout") != null) { %>
-        <%= "Log out status: " + request.getAttribute("logout") %>
-        <% request.removeAttribute("logout"); %>
-    <% } %>
+    <%--<% if(request.getAttribute("logout") != null) { %>--%>
+        <%--<%= "Log out status: " + request.getAttribute("logout") %>--%>
+        <%--<% request.removeAttribute("logout"); %>--%>
+    <%--<% } %>--%>
     <div class="jumbotron">
         <div class="content">
             <p>Featured Movie</p>

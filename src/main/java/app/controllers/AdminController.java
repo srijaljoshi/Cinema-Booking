@@ -71,10 +71,13 @@ public class AdminController {
 
 
     @RequestMapping("/users")
-    public String manageUsers(Model model) {
-        List<Customer> customers = adminService.listCustomers();
-        model.addAttribute("customers", customers);
-        return "manage-users";
+    public String manageUsers(Model model, HttpSession session) {
+        if(session.getAttribute("admin") != null) {
+            List<Customer> customers = adminService.listCustomers();
+            model.addAttribute("customers", customers);
+            return "manage-users";
+        }
+        return "redirect:login";
     }
 
     /**

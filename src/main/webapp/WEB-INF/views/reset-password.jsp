@@ -6,8 +6,7 @@
 <head>
     <title>Sign In</title>
 
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/css/template.css" />">
+    <jsp:include page="template-imports.jsp" />
 </head>
 
 <body>
