@@ -11,4 +11,5 @@ public interface IMovieDao {
     void delete(int id);
 
     void save(Movie m);
+    List<Movie> findByTitle(String title);
 }

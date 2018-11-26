@@ -1,28 +1,29 @@
 
-document.getElementById("myInput").onkeyup = function() {
-    // Declare variables
-    var input, filter, table, tr, td, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
+if(document.getElementById("myInput") != null) {
+    document.getElementById("myInput").onkeyup = function () {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
 
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = ""; //reset display css property if filtered and is in the view
-                console.log("Filtered " + i);
-            } else {
-                // If not what the user wanted then set display property to none to make it invisible
-                tr[i].style.display = "none";
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = ""; //reset display css property if filtered and is in the view
+                    console.log("Filtered " + i);
+                } else {
+                    // If not what the user wanted then set display property to none to make it invisible
+                    tr[i].style.display = "none";
+                }
             }
         }
     }
+
 }
-
-
 /**
  * AJAX request for deleting movie
  */
@@ -42,29 +43,61 @@ $(".btn-delete-movie").click(function (e) {
     });
 
 });
-// document.getElementById("btn-delete-movie").onclick = function deleteMovie(event) {
-//     var xhr = new XMLHttpRequest();
-//     var id = document.getElementById("movieID").innerText;
-//     console.log(">>> Deleting movie with id: " + id);
-//
-//     var tr = document.getElementById("myTable").getElementsByTagName("tr");
-//
-//     xhr.onreadystatechange = function() {
-//         if (this.readyState == 4 && this.status == 200) {
-//
-//             // here you need to write what to do after the request is completed
-//             // https://www.w3schools.com/xml/ajax_xmlhttprequest_create.asp
-//             tr[parseInt(id) - 1].style.display = "none";
-//             // document.getElementById("movie" + id).style.display = none;
-//         }
-//     };
-//     xhr.open("DELETE", "/a/movies/" + id, true);
-//     console.log(">>> Inside deleteMovie AJAX request opened!!!")
-//     xhr.send();
-// }
 
+// Get search results
 
+var searchResults = $("#searchResults");
 
+$("#btn-search-movie").click(function (e) {
+    e.preventDefault();
+    //
+    // var urlParams = new URLSearchParams(window.location.search);
+    // alert("Url Params: " + urlParams)
+    var movieTitle = document.getElementById("movieTitle").value;
+    searchResults.empty();
+    $.ajax({
+        url: "/u/search_results/",
+        method: "GET",
+        data: {
+            "title": movieTitle
+        },
+        contentType: "application/json",
+        success: function (movies) {
+            console.log(movies);
+            // $("#searchResults").append(JSON.stringify(movies));
+            // alert("Found a movie with title = " + data.title);
+            for(i=0; i<movies.length; i++) {
+                displayMovie(movies[i]);
+            }
+        }
+    });
+
+});
+
+var displayMovie = function(movie) {
+
+    var htmlstring = "";
+
+    var trailerPicture = movie.trailerPicture;
+    htmlstring += "" +
+        "<div class='col-md-4'>" +
+        "<img class='img-thumbnail' src=" + trailerPicture + "> " +
+        "<p> Title: " + movie.title + "</p>" +
+        "<p>Director: " + movie.director + "</p>" +
+        "</div>";
+
+    // htmlstring.append("Tello");
+
+    searchResults.append(htmlstring);
+    // $('#searchResults').append('<img class="img-thumbnail" src="' + movie.trailerPicture + '">');
+    // $('#searchResults').append('<p> Title: ' + movie.title + '</p>');
+    // $('#searchResults').append('<p>Director: ' + movie.director+ '</p>');
+}
+
+$("#btn-clear-movie").click(function (e) {
+    e.preventDefault();
+    $("#searchResults").empty();
+});
 
 
 // $('#newMovieForm').submit(function (e) {

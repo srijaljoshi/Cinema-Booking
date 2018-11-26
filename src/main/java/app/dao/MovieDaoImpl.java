@@ -27,4 +27,9 @@ public class MovieDaoImpl implements IMovieDao {
     public void save(Movie m) {
         sessionFactory.getCurrentSession().persist(m);
     }
+
+    @Override
+    public List<Movie> findByTitle(String title) {
+        return sessionFactory.getCurrentSession().createQuery("From Movie as m where m.title  like :searchField").setString("searchField", "%"+title+"%").list();
+    }
 }
