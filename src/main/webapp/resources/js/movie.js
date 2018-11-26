@@ -81,7 +81,7 @@ var displayMovie = function(movie) {
     var trailerPicture = movie.trailerPicture;
     htmlstring += "" +
         "<div class='col-md-4'>" +
-        "<img class='img-thumbnail' src=" + trailerPicture + "> " +
+        "<img class='img-thumbnail' style='width: 200px; height: 300px;' src=" + trailerPicture + "> " +
         "<p> Title: " + movie.title + "</p>" +
         "<p>Director: " + movie.director + "</p>" +
         "</div>";
