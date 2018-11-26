@@ -62,7 +62,7 @@ public class MovieShowing {
     }
 
     public void setShowDate(Date showDate) {
-        st.setShowDate(showDate);
+
         this.showDate = showDate;
     }
 

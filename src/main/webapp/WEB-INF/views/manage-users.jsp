@@ -48,7 +48,7 @@
                     <td>${customer.firstName}</td>
                     <td>${customer.lastName}</td>
                     <td>${customer.statusID}</td>
-                    <td><input class="btn btn-primary btn-sm" type="submit" value="Edit"></td>
+                    <td><input class="btn btn-primary btn-sm" type="submit" value="Delete"></td>
                     <c:if test="${customer.statusID == 1}" >
                         <td><a href="/a/users/${customer.id}/suspend" class="btn btn-danger btn-sm">Suspend</a></td>
                     </c:if>

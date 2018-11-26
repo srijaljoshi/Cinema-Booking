@@ -36,7 +36,7 @@ $(".btn-delete-movie").click(function (e) {
         url: "/a/movies/" + del_id,
         method: "DELETE",
         success: function (data) {
-            alert("Deleted a movie with id = " + del_id);
+            alert("Deleted a hall with id = " + del_id);
             tr.remove();
         }
     });

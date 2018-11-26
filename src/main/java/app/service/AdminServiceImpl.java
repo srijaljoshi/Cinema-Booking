@@ -4,10 +4,7 @@ import app.dao.IAddressDao;
 import app.dao.IAdminDao;
 import app.dao.ICustomerDao;
 import app.dao.IMovieDao;
-import app.models.Address;
-import app.models.Admin;
-import app.models.Customer;
-import app.models.Movie;
+import app.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,5 +88,23 @@ public class AdminServiceImpl implements IAdminService {
     @Override
     public void saveMovie(Movie m) {
         movieDao.save(m);
+    }
+
+    @Transactional
+    @Override
+    public List<Hall> listHalls() {
+        return adminDao.listHalls();
+    }
+
+    @Transactional
+    @Override
+    public void saveHall(Hall hall) {
+        adminDao.saveHall(hall);
+    }
+
+    @Transactional
+    @Override
+    public void updateMovie(Movie m) {
+        adminDao.updateMovie(m);
     }
 }

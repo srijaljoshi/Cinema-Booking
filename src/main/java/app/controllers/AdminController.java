@@ -2,6 +2,7 @@ package app.controllers;
 
 import app.models.Admin;
 import app.models.Customer;
+import app.models.Hall;
 import app.models.Movie;
 import app.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,6 +120,29 @@ public class AdminController {
     public String addNewMovie(@ModelAttribute("movie") Movie m) {
         System.out.println(">>>Got movie from form: " + m.getTitle());
         adminService.saveMovie(m);
+        return "redirect:/a/movies";
+    }
+
+    @GetMapping("/halls")
+    public String getHalls(Model model, HttpSession session) {
+        if (session.getAttribute("admin") != null) {
+            model.addAttribute("halls", adminService.listHalls());
+            return "manage-halls";
+        }
+        // else
+        return "redirect:login";
+    }
+
+    @PostMapping("/halls/new")
+    public String newHall(@ModelAttribute("hall") Hall hall) {
+        System.out.println(">>>Got hall from form: " + hall.getName());
+        adminService.saveHall(hall);
+        return "redirect:/a/halls";
+    }
+
+    @PostMapping("/movies/edit")
+    public String updateMovie(@ModelAttribute("movie") Movie m) {
+        adminService.updateMovie(m);
         return "redirect:/a/movies";
     }
 

@@ -1,9 +1,6 @@
 package app.service;
 
-import app.models.Address;
-import app.models.Admin;
-import app.models.Customer;
-import app.models.Movie;
+import app.models.*;
 
 import java.util.List;
 
@@ -24,4 +21,10 @@ public interface IAdminService {
     public Admin login(String email, String password);
 
     void saveMovie(Movie m);
+
+    List<Hall> listHalls();
+
+    void saveHall(Hall hall);
+
+    void updateMovie(Movie m);
 }

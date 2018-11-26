@@ -1,6 +1,7 @@
 package app.models;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity
@@ -20,7 +21,7 @@ public class Movie {
     private String review;
     private String producer;
     private String cast;    //map to actor
-    private Timestamp duration;        //https://www.mkyong.com/java/how-to-get-current-timestamps-in-java/
+    private String duration;        //https://www.mkyong.com/java/how-to-get-current-timestamps-in-java/
 
     public void displayInfo() {
 
@@ -90,11 +91,11 @@ public class Movie {
         return cast;
     }
 
-    public void setDuration(Timestamp duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
-    public Timestamp getDuration() {
+    public String getDuration() {
         return duration;
     }
 

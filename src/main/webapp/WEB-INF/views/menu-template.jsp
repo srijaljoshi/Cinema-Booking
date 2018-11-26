@@ -39,9 +39,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/a/movies">Manage Movies</a></li>
                 <li><a href="/a/users">Manage Users</a></li>
-                <li><a href="">Mange Halls</a></li>
-                <li><a href="">Manage Showtimes</a></li>
-                <li><a href="">Manage Seats</a></li>
+                <li><a href="/a/halls">Manage Halls</a></li>
+                <%--<li><a href="">Manage Showtimes</a></li>--%>
+                <%--<li><a href="">Manage Seats</a></li>--%>
                 <li><a href="/a/logout">Logout</a></li>
                 <li><a>Hello, ${sessionScope.admin.firstName}</a></li>
             </ul>

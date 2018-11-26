@@ -35,10 +35,74 @@
                     <div class="form-group">
                         <label>Director</label>
                         <input type="text" name="director" class="form-control" placeholder="Director">
+                        <br><br>
+                        <label>Trailer Video</label>
+                        <input type="text" name="trailerVideo" class="form-control" placeholder="Trailer Video link">
+                        <br><br>
+                        <label>Trailer Picture</label>
+                        <input type="text" name="trailerPicture" class="form-control" placeholder="Trailer Picture link">
+                        <br><br>
+                    </div>
+                    <div class="form-group">
+                        <label>Synopsis</label>
+                        <textarea class="form-control" name="synopsis">Enter the movie synopsis</textarea>
+                        <br><br>
+                        <input type="time" name="duration" >
                     </div>
                     <div class="form-group">
                         <label for="selectRating">Rating</label>
                         <select name="rating" class="form-control" id="selectRating">
+                            <option>G</option>
+                            <option>PG</option>
+                            <option>R</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn-sm btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Edit Movie</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editMovieForm" action="/a/movies/edit" method="post">
+                    <div class="form-group">
+                        <label>Movie Title</label>
+                        <input type="text" name="title" class="form-control" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <label>Director</label>
+                        <input type="text" name="director" class="form-control" placeholder="Director">
+                        <br><br>
+                        <label>Trailer Video</label>
+                        <input type="text" name="trailerVideo" class="form-control" placeholder="Trailer Video link">
+                        <br><br>
+                        <label>Trailer Picture</label>
+                        <input type="text" name="trailerPicture" class="form-control" placeholder="Trailer Picture link">
+                        <br><br>
+                    </div>
+                    <div class="form-group">
+                        <label>Synopsis</label>
+                        <textarea class="form-control" name="synopsis">Enter the movie synopsis</textarea>
+                        <br><br>
+                        <input type="time" name="duration" >
+                    </div>
+                    <div class="form-group">
+                        <label for="selectRating">Rating</label>
+                        <select name="rating" class="form-control" id="selectRatingUpdate">
                             <option>G</option>
                             <option>PG</option>
                             <option>R</option>
@@ -88,12 +152,12 @@
         <tbody>
 
         <c:forEach items="${movies}" var="movie" >
-            <tr id="${movie.id}">
+            <tr zid="${movie.id}">
                 <th scope="row" id="movieID">${movie.id}</th>
                 <td>${movie.title}</td>
                 <td>${movie.director}</td>
                 <td>${movie.rating}</td>
-                <td><a class="btn btn-primary btn-sm" id="btn-edit-movie">Edit</a></td>
+                <td><a class="btn btn-primary btn-sm btn-edit-movie"  data-toggle="modal" data-target="#exampleModal">Edit</a></td>
                 <td><a href="#" class="btn btn-danger btn-sm btn-delete-movie">Delete</a></td>
             </tr>
         </c:forEach>

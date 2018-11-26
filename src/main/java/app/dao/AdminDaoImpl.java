@@ -2,6 +2,8 @@ package app.dao;
 
 import app.models.Admin;
 import app.models.Customer;
+import app.models.Hall;
+import app.models.Movie;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.type.Type;
@@ -85,6 +87,21 @@ public class AdminDaoImpl implements IAdminDao {
         Admin admin = (Admin) query.list().get(0);
         return admin;
 
+    }
+
+    @Override
+    public List<Hall> listHalls() {
+        return sessionFactory.getCurrentSession().createQuery("from Hall").list();
+    }
+
+    @Override
+    public void saveHall(Hall hall) {
+        sessionFactory.getCurrentSession().persist(hall);
+    }
+
+    @Override
+    public void updateMovie(Movie m) {
+        sessionFactory.getCurrentSession().update(m);
     }
 
 }
