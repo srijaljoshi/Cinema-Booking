@@ -7,9 +7,34 @@ public class Seat {
     private int hallId;
     private String location;
     private int seatNo;
-    private boolean seatTaken;
+    private int seatTaken;
 
-    public Seat(int id, int hallId, String location, int seatNo, boolean seatTaken) {
+    public Seat() {
+    	this.seatTaken = 0;
+    	this.location = null;
+    }
+    
+    public SeatShowtime getSst() {
+		return sst;
+	}
+
+	public void setSst(SeatShowtime sst) {
+		this.sst = sst;
+	}
+
+	public Hall getHall() {
+		return hall;
+	}
+
+	public void setHall(Hall hall) {
+		this.hall = hall;
+	}
+
+	public void setSeatNo(int seatNo) {
+		this.seatNo = seatNo;
+	}
+
+	public Seat(int id, int hallId, String location, int seatNo, int seatTaken) {
         this.id = id;
         this.hallId = hallId;
         this.location = location;
@@ -25,11 +50,11 @@ public class Seat {
         this.seatNo = seatNo;
     }
 
-    public void setSeatTaken(boolean seatTaken) {
+    public void setSeatTaken(int seatTaken) {
         this.seatTaken = seatTaken;
     }
 
-    public boolean getSeatTaken() {
+    public int getSeatTaken() {
         return seatTaken;
     }
 
@@ -64,4 +89,6 @@ public class Seat {
     public String getLocation() {
         return location;
     }
+    
+    
 }

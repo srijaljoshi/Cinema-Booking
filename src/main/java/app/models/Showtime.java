@@ -1,51 +1,54 @@
 package app.models;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Showtime {
-    private MovieShowing movie;
-    private SeatShowtime sst;
+    private String movie;
     private int id;
-    private Time time;
-    private Date date;
-
-    public Showtime(Time time, Date date) {
-        this.time = time;
-        this.date = date;
+    private String time;
+    private String date;
+    
+    public Showtime() {
+    	this.movie = null;
+    	this.id = -1;
+    	this.time = null;
+    	this.date = null;
     }
 
-    public void setMovieShowing(MovieShowing movie) {
-        this.movie = movie;
-    }
+	public String getMovie() {
+		return movie;
+	}
 
-    public void setSeatShowtime(SeatShowtime sst) {
-        this.sst = sst;
-    }
+	public void setMovie(String movie) {
+		this.movie = movie;
+	}
 
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public Date getShowDate() {
-        return date;
-    }
+	public String getTime() {
+		return time;
+	}
 
-    public void setShowDate(Date date) {
-        date = movie.getShowDate();
-        this.date = date;
-    }
+	public void setTime(String time) {
+		this.time = time;
+	}
 
-    public Time getShowTime() {
-        return time;
-    }
+	public String getDate() {
+		return date;
+	}
 
-    public void setShowTime(Time time) {
-        this.time = time;
-    }
+	public void setDate(String date) {
+		this.date = date;
+	}
+    
+    
 }

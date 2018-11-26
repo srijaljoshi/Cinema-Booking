@@ -82,7 +82,6 @@ public class CustomerLoginController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-
     public String confirmation(@ModelAttribute("customer") Customer customer,
                                @ModelAttribute("address") Address address,
                                @RequestParam(name="promo", required = false) String enrollForPromotions,
