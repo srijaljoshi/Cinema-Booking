@@ -75,7 +75,7 @@ public class CustomerLoginController {
             System.out.println(">>> Logging out as user " + session.getAttribute("customer"));
             session.invalidate();
             model.addAttribute("logout", "SUCCESS");
-            return "home";
+            return "redirect:/u/";
         }
         return "redirect:/";
     }

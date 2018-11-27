@@ -13,7 +13,7 @@
 <div class="container-fluid">
 
     <div class="row">
-        <div class="col-lg-4 col-lg-offset-4">
+        <div class="col-lg-4 col-lg-offset-2">
             <br><br>
             <h1 class="text-center">Search Movie</h1>
 

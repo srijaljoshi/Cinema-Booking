@@ -87,12 +87,12 @@
 
         <c:forEach items="${halls}" var="hall" >
             <tr zid="${hall.id}">
-                <th scope="row" id="movieID">${hall.id}</th>
+                <th scope="row" id="hallID">${hall.id}</th>
                 <td>${hall.name}</td>
                 <td>${hall.totalSeats}</td>
                 <td>${hall.availableSeats}</td>
-                <td><a class="btn btn-primary btn-sm" id="btn-edit-movie">Edit</a></td>
-                <td><a href="#" class="btn btn-danger btn-sm btn-delete-movie">Delete</a></td>
+                <td><a class="btn btn-primary btn-sm" id="btn-edit-hall">Edit</a></td>
+                <td><a href="#" class="btn btn-danger btn-sm btn-delete-hall">Delete</a></td>
             </tr>
         </c:forEach>
         </tbody>

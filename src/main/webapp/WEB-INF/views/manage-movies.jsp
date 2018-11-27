@@ -35,25 +35,26 @@
                     <div class="form-group">
                         <label>Director</label>
                         <input type="text" name="director" class="form-control" placeholder="Director">
-                        <br><br>
+                        <br>
                         <label>Trailer Video</label>
                         <input type="text" name="trailerVideo" class="form-control" placeholder="Trailer Video link">
-                        <br><br>
+                        <br>
                         <label>Trailer Picture</label>
                         <input type="text" name="trailerPicture" class="form-control" placeholder="Trailer Picture link">
-                        <br><br>
+                        <br>
                     </div>
                     <div class="form-group">
                         <label>Synopsis</label>
                         <textarea class="form-control" name="synopsis">Enter the movie synopsis</textarea>
-                        <br><br>
-                        <input type="time" name="duration" >
+                        <br>
+                        <label>Duration</label>
+                        <input class="form-control" type="text" name="duration"  placeholder="Duration">
                     </div>
                     <div class="form-group">
                         <label for="selectRating">Rating</label>
                         <select name="rating" class="form-control" id="selectRating">
                             <option>G</option>
-                            <option>PG</option>
+                            <option>PG-13</option>
                             <option>R</option>
                         </select>
                     </div>
@@ -86,25 +87,27 @@
                     <div class="form-group">
                         <label>Director</label>
                         <input type="text" name="director" class="form-control" placeholder="Director">
-                        <br><br>
+                        <br>
                         <label>Trailer Video</label>
                         <input type="text" name="trailerVideo" class="form-control" placeholder="Trailer Video link">
-                        <br><br>
+                        <br>
                         <label>Trailer Picture</label>
                         <input type="text" name="trailerPicture" class="form-control" placeholder="Trailer Picture link">
-                        <br><br>
+                        <br>
                     </div>
                     <div class="form-group">
                         <label>Synopsis</label>
                         <textarea class="form-control" name="synopsis">Enter the movie synopsis</textarea>
-                        <br><br>
-                        <input type="time" name="duration" >
+                        <br>
+
+                        <label>Duration</label>
+                        <input class="form-control" type="text" name="duration" >
                     </div>
                     <div class="form-group">
                         <label for="selectRating">Rating</label>
                         <select name="rating" class="form-control" id="selectRatingUpdate">
                             <option>G</option>
-                            <option>PG</option>
+                            <option>PG-13</option>
                             <option>R</option>
                         </select>
                     </div>

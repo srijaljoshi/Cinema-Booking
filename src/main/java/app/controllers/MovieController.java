@@ -30,7 +30,7 @@ public class MovieController {
 
     @RequestMapping(value = {"search", "u/search"})
     public String searchMovie() {
-        return "search-movie";
+        return "movie-search";
     }
 
     @RequestMapping(value = "/u/search_results")
