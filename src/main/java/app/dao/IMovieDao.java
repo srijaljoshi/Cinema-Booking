@@ -14,4 +14,6 @@ public interface IMovieDao {
     List<Movie> findByTitle(String title);
 
     Movie findById(Integer id);
+
+    List<Movie> listMoviesByPlaying(int nowPlaying);
 }

@@ -18,6 +18,9 @@ public class MovieController {
     @Autowired
     private IMovieService movieService;
 
+    final static int NOW_PLAYING = 1;
+    final static int COMING_SOON = 0;
+
     /**
      * Get movies from the database to show on the home page
      * @return
@@ -50,4 +53,17 @@ public class MovieController {
         System.out.println(">>> found movie with id: " + id);
         return "movie-details";
     }
+
+    @RequestMapping("/movies_playing")
+    public String nowPlaying(Model model) {
+        model.addAttribute("movies", movieService.listMoviesByPlaying(NOW_PLAYING));
+        return "movies-now-playing";
+    }
+
+    @RequestMapping("/coming_soon")
+    public String comingSoon(Model model) {
+        model.addAttribute("movies", movieService.listMoviesByPlaying(COMING_SOON));
+        return "movies-now-playing";
+    }
+
 }

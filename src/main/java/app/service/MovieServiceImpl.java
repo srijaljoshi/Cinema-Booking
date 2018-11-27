@@ -1,8 +1,5 @@
 package app.service;
 
-import app.dao.IAddressDao;
-import app.dao.IAdminDao;
-import app.dao.ICustomerDao;
 import app.dao.IMovieDao;
 import app.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +50,12 @@ public class MovieServiceImpl implements IMovieService {
     @Override
     public Movie findById(Integer id) {
         return movieDao.findById(id);
+    }
+
+    @Transactional
+    @Override
+    public List<Movie> listMoviesByPlaying(int nowPlaying) {
+        return movieDao.listMoviesByPlaying(nowPlaying);
     }
 
 

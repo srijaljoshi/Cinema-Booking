@@ -44,4 +44,9 @@ public class MovieDaoImpl implements IMovieDao {
     public Movie findById(Integer id) {
         return (Movie)sessionFactory.getCurrentSession().get(Movie.class, id);
     }
+
+    @Override
+    public List<Movie> listMoviesByPlaying(int nowPlaying) {
+        return sessionFactory.getCurrentSession().createQuery("from Movie as m where playing=:p").setInteger("p", nowPlaying).list();
+    }
 }
