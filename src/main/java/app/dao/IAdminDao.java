@@ -2,6 +2,8 @@ package app.dao;
 
 import app.models.Admin;
 import app.models.Customer;
+import app.models.Hall;
+import app.models.Movie;
 
 import java.util.List;
 
@@ -35,4 +37,9 @@ public interface IAdminDao {
 
     public Admin getAdmin(String email, String password);
 
+    List<Hall> listHalls();
+
+    void saveHall(Hall hall);
+
+    void updateMovie(Movie m);
 }

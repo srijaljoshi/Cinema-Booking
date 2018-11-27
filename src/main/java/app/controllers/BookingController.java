@@ -30,12 +30,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import app.models.Booking;
 import app.models.CardPayment;
+import app.models.Customer;
 import app.models.Promo;
 import app.models.Seat;
 import app.models.Showtime;
 import app.models.Ticket;
 import app.service.IBookingService;
 import app.service.ICustomerService;
+import tools.CustomerTools;
 
 @Controller
 @RequestMapping("/u")
@@ -64,7 +66,17 @@ public class BookingController {
 		@RequestParam(value = "movieId") String movieId,
 		@RequestParam(value = "date") Date date,
 		HttpSession session) {
+		if (session.getAttribute("customer") == null) {
+			System.out.println("customer is null");
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("login");
+			return mv;
+		}else {
+			System.out.println("not null");;
+		}
+		Customer c = (Customer) session.getAttribute("customer");
 		Booking booking = new Booking();
+		booking.setCustomerId(c.getId());
 		ModelAndView mv = new ModelAndView();
 		System.out.println("time: " + time);
 		System.out.println("date: " + date.toString());
@@ -76,6 +88,7 @@ public class BookingController {
 		booking.setShowTimeId(Integer.parseInt(movieShowingId));
 		Showtime showtime = new Showtime();
 		showtime.setDate(date.toString());
+		System.out.println(showtime.getDate());
 		showtime.setTime(time.toString());
 		booking.setShowtime(showtime);
 		List<Seat> seats = bookingService.findAvailableSeats(movieShowingId);
@@ -311,13 +324,14 @@ public class BookingController {
 			bookingService.addTickets(Integer.toString(ageCategoryID), Integer.toString(seatID), Double.toString(price), Integer.toString(MovieShowID), Integer.toString(bookingId));
 		}
 		session.setAttribute("booking", booking);
-		return "confirmation";
+		return "redirect:confirmation";
 	}
 	
-	@RequestMapping(value="confirmation")
-	public ModelAndView confirmation(HttpSession session, ModelAndView mv) {
-		Booking booking = (Booking) session.getAttribute("booking");
+	@RequestMapping(value="confirmation", method=RequestMethod.GET)
+	public ModelAndView confirmation(HttpSession session, ModelAndView mv, CustomerTools tools) {
 		
+		Booking booking = (Booking) session.getAttribute("booking");
+		System.out.println(">>>>>>>>>>>>>> in confirmation function");
 		
 		//need to 
 		// add a Showtime to view - done
@@ -326,18 +340,22 @@ public class BookingController {
 		// add the theater - done with tickets in booking
 		// add the total - done with the booking
 		// add a title of the the movie
-		String movieTitle = bookingService.getMovieName(Integer.toString(booking.getMovieId()));
+		String movieTitle = "";
+		movieTitle = bookingService.getMovieName(Integer.toString(booking.getMovieId()));
 		Showtime showtime = new Showtime();
-		Map modelMap = new HashMap();
-		modelMap.put("title", movieTitle);
-		mv.addAllObjects(modelMap);
+		System.out.println("movie title: " + movieTitle);
+		System.out.println("date: " + booking.getShowtime().getDate());
+		mv.addObject("title", movieTitle);
 		/*showtime = bookingService.queryShowtime(Integer.toString(booking.getShowTimeId()));
 		System.out.println("showtime date = " + showtime.getDate() + " showtime time = " + showtime.getTime());
 		mv.addObject("showtime", showtime);*/
 		mv.addObject("booking", booking);
-		mv.setViewName("/u/confirmation");
+		mv.setViewName("/confirmation");
 		System.out.println("Movie title: " + movieTitle);
+		Customer c = (Customer) session.getAttribute("customer");
+		tools.sendBookingConfirmation(c.getEmail(), booking);
 		return mv;
 	}
+	
 	
 }

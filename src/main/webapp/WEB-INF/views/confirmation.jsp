@@ -140,9 +140,9 @@
     <div class ="signInInfo">
         <br>
         <div class ="getEP">
-            <h3>Movie: ${ }
+            <h3>Movie: ${title}
 			<br>
-			Date: ${shotime.date}
+			Date: ${booking.showtime.date}
 			<br>
 			Time: ${booking.showtime.time}</h3>
 			
@@ -153,7 +153,7 @@
             </c:forEach>
 			</p>
 			
-			<p>TOTAL<tab1>$ ${booking.totalPrice}</tab1></p>
+			<p>TOTAL <tab1>$<span>${booking.totalPrice}</span></tab1></p>
             <br>
             <br>
         </div>

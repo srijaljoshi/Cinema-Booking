@@ -2,13 +2,14 @@ package app.controllers;
 
 import app.models.Admin;
 import app.models.Customer;
+import app.models.Hall;
+import app.models.Movie;
 import app.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -70,11 +71,82 @@ public class AdminController {
 
 
     @RequestMapping("/users")
-    public String manageUsers(Model model) {
-        List<Customer> customers = adminService.listCustomers();
-        model.addAttribute("customers", customers);
-        return "manage-users";
+    public String manageUsers(Model model, HttpSession session) {
+        if(session.getAttribute("admin") != null) {
+            List<Customer> customers = adminService.listCustomers();
+            model.addAttribute("customers", customers);
+            return "manage-users";
+        }
+        return "redirect:login";
     }
 
+    /**
+     * Get the movies from the database for the admin to manage
+     * @param model
+     * @return movies view
+     */
+    @RequestMapping("/movies")
+    public String manageMovies(HttpSession session, Model model) {
+        if (session.getAttribute("admin") != null) {
+            List<Movie> movies = adminService.listMovies();
+            model.addAttribute("movies", movies);
+            return "manage-movies";
+        }
+        // else
+        return "redirect:login";
+    }
+
+    @DeleteMapping("/movies/{id}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public String deleteMovie(@PathVariable("id") Integer id) {
+
+        int deletedStatus = adminService.deleteMovie(id);
+        System.out.println(">>> Deleted with status: " + deletedStatus);
+        return "redirect:movies";
+    }
+
+    @RequestMapping("/users/{id}/suspend")
+    public String suspendUser(@PathVariable("id") int id) {
+
+        adminService.suspend(id);
+        return "redirect:/a/users";
+    }
+
+    @RequestMapping("/users/{id}/reactivate")
+    public String reactivateUser(@PathVariable("id") int id) {
+
+        adminService.reactivateUser(id);
+        return "redirect:/a/users";
+    }
+
+    @RequestMapping(value = "movies/new", method = RequestMethod.POST)
+    public String addNewMovie(@ModelAttribute("movie") Movie m) {
+        System.out.println(">>>Got movie from form: " + m.getTitle());
+        adminService.saveMovie(m);
+        return "redirect:/a/movies";
+    }
+
+    @GetMapping("/halls")
+    public String getHalls(Model model, HttpSession session) {
+        if (session.getAttribute("admin") != null) {
+            model.addAttribute("halls", adminService.listHalls());
+            return "manage-halls";
+        }
+        // else
+        return "redirect:login";
+    }
+
+    @PostMapping("/halls/new")
+    public String newHall(@ModelAttribute("hall") Hall hall) {
+        System.out.println(">>>Got hall from form: " + hall.getName());
+        adminService.saveHall(hall);
+        return "redirect:/a/halls";
+    }
+
+    @PostMapping("/movies/edit")
+    public String updateMovie(@ModelAttribute("movie") Movie m) {
+        adminService.updateMovie(m);
+        return "redirect:/a/movies";
+    }
 
 }

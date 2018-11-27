@@ -258,10 +258,12 @@ public class BookingDaoImpl implements IBookingDao{
 
 	@Override
 	public String queryMovieName(String string) {
+		System.out.println("querying movie name");
 		String query = "select title from Movie where id = ?";
 		String movieName = (String) jdbcTemplate.queryForObject(
 				query, new Object[] { string }, String.class);
 		System.out.println("Got movie name as: " + movieName);
+		System.out.println("getting movie name: " + movieName);
 	    return movieName;
 	}
 	

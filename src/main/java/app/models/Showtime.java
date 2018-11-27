@@ -50,5 +50,4 @@ public class Showtime {
 		this.date = date;
 	}
     
-    
 }

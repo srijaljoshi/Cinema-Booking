@@ -28,7 +28,6 @@ public interface ICustomerService {
     public String updateStatus(Customer customer);
 
 	public Customer findByEmail(String email);
-	
-	
+
 	
 }

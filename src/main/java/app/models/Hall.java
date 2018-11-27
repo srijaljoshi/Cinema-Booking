@@ -1,23 +1,19 @@
 package app.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Hall")
 
 public class Hall {
-    private MovieShowing movie;
+
+    @Id
     private int id;
-    private final int totalSeats = 30;
+    private String name;
+    private int totalSeats = 30;
     private int availableSeats = totalSeats;
 
-    public Hall(MovieShowing movie, int availableSeats) {
-        this.movie = movie;
-        this.availableSeats = availableSeats;
-    }
-
-    public void setMovieShowing(MovieShowing movie) {
-        this.movie = movie;
-    }
-
-    public MovieShowing getMovieShowing() {
-        return movie;
+    public Hall() {
     }
 
     public void setId(int id) {
@@ -28,6 +24,14 @@ public class Hall {
         return id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getAvailableSeats() {
         return availableSeats;
     }
@@ -36,4 +40,11 @@ public class Hall {
         this.availableSeats = availableSeats;
     }
 
+    public int getTotalSeats() {
+        return totalSeats;
+    }
+
+    public void setTotalSeats(int totalSeats) {
+        this.totalSeats = totalSeats;
+    }
 }

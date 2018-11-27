@@ -3,9 +3,8 @@ package app.service;
 import app.dao.IAddressDao;
 import app.dao.IAdminDao;
 import app.dao.ICustomerDao;
-import app.models.Address;
-import app.models.Admin;
-import app.models.Customer;
+import app.dao.IMovieDao;
+import app.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +23,9 @@ public class AdminServiceImpl implements IAdminService {
     @Autowired
     private IAddressDao addressDao;
 
+    @Autowired
+    private IMovieDao movieDao;
+
     @Transactional
     @Override
     public List<Customer> listCustomers() {
@@ -40,6 +42,36 @@ public class AdminServiceImpl implements IAdminService {
         return null;
     }
 
+    @Transactional
+    @Override
+    public void suspend(int id) {
+        customerDao.suspend(id);
+    }
+
+    @Transactional
+    @Override
+    public void reactivateUser(int id) {
+        customerDao.reactivate(id);
+    }
+
+    @Transactional
+    @Override
+    public List<Movie> listMovies() {
+        return movieDao.listAll();
+    }
+
+    @Transactional
+    @Override
+    public int deleteMovie(int id) {
+        try {
+            movieDao.delete(id);
+            return 1;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return -1;
+        }
+    }
+
 
     public void addAddress(Address address, int id) {
         addressDao.save(address, id);
@@ -50,5 +82,29 @@ public class AdminServiceImpl implements IAdminService {
     public Admin login(String email, String password) {
         // TODO Auto-generated method stub
         return adminDao.getAdmin(email, password);
+    }
+
+    @Transactional
+    @Override
+    public void saveMovie(Movie m) {
+        movieDao.save(m);
+    }
+
+    @Transactional
+    @Override
+    public List<Hall> listHalls() {
+        return adminDao.listHalls();
+    }
+
+    @Transactional
+    @Override
+    public void saveHall(Hall hall) {
+        adminDao.saveHall(hall);
+    }
+
+    @Transactional
+    @Override
+    public void updateMovie(Movie m) {
+        adminDao.updateMovie(m);
     }
 }

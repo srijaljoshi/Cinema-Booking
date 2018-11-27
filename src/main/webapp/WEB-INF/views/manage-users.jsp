@@ -23,7 +23,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3">
-                        <input type="text" class="form-control" placeholder="Search User"> <br>
+                        <input type="text" id="myInput" class="form-control" placeholder="Search User"> <br>
                         <input type="submit" class="btn btn-primary btn-sm">
                     </div>
                 </div>
@@ -31,7 +31,7 @@
         </form>
 
         <br><br>
-        <table class="table table-hover">
+        <table class="table table-hover" id="myTable">
             <thead>
             <tr>
                 <th scope="col">id</th>
@@ -47,14 +47,21 @@
                     <th scope="row">${customer.id}</th>
                     <td>${customer.firstName}</td>
                     <td>${customer.lastName}</td>
-                    <td>${customer.email}</td>
-                    <td><input class="btn btn-primary btn-sm" type="submit" value="Edit"></td>
-                    <td><input class="btn btn-danger btn-sm" type="submit" value="Suspend"></td>
+                    <td>${customer.statusID}</td>
+                    <td><input class="btn btn-primary btn-sm" type="submit" value="Delete"></td>
+                    <c:if test="${customer.statusID == 1}" >
+                        <td><a href="/a/users/${customer.id}/suspend" class="btn btn-danger btn-sm">Suspend</a></td>
+                    </c:if>
+                    <c:if test="${customer.statusID == 2}" >
+                        <td><a href="/a/users/${customer.id}/reactivate" class="btn btn-success btn-sm">Activate</a></td>
+                    </c:if>
+
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </div>
 
+    <script src="<c:url value="/resources/js/search.js" />" type="application/javascript"></script>
 </body>
 </html>

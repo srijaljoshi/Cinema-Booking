@@ -16,6 +16,13 @@ html, body {
     color: darkred;
 }
 
+.trailer-image {
+    height: auto;
+    width: auto;
+    max-width: 20px !important;
+    max-height: 100px;
+}
+
 .navbar {
     font-size: 20px;
     background-color: #fff;

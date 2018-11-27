@@ -32,7 +32,7 @@ public interface ICustomerDao {
      * Finds a customer with a particular id
      *
      * @param id
-     * @return Cutomer object
+     * @return Customer object
      */
     public Customer findById(int id); // GET
 
@@ -40,6 +40,8 @@ public interface ICustomerDao {
 
     public void removeById(int id);
 
+    void suspend(int id);
+    void reactivate(int id);
     /**
      * Method return the Customer object when customer logs in or returns Null
      *

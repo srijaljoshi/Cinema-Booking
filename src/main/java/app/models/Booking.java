@@ -20,6 +20,7 @@ public class Booking {
     double price;
     String movieName;
     Showtime showtime;
+    int customerId;
     
     public int getId() {
         return id;
@@ -125,6 +126,15 @@ public class Booking {
 		this.showtime = showtime;
 	}
 
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	
 	
 	
 }
