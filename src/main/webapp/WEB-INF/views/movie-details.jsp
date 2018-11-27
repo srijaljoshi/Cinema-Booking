@@ -17,11 +17,13 @@
 
 <div class="container">
     <div class="row">
+
         <div class="col-md-4">
             <img src="${movie.trailerPicture}" class="detail-image">
             <br><br>
-            <a href="#" class="btn btn-primary btn-sm">Book this movie</a>
+            <a href="/u/testBooking?movie_id=${movie.id}" class="btn btn-primary btn-sm">Book this movie</a>
         </div>
+
         <div class="col-md-8">
             <div class="movie-header text-center">
                 <p class="movie-title">${movie.title}</p>

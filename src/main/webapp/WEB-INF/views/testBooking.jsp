@@ -8,10 +8,9 @@
 	    <meta charset="UTF-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	
-	    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-		<link rel="stylesheet" href="<c:url value="/resources/css/template.css" />">
-	   <title>Movie Details</title>
+
+		<jsp:include page="template-imports.jsp" />
+	   <title>Booking Page</title>
 	</head>
 <body>
 	<jsp:include page="menu-template.jsp"/>
@@ -19,12 +18,12 @@
 	   <div class="row top top-buffer">
 	     <div class="col-md-3">
 	       <h1>Movie Name</h1>
-	       <img src="" width="200px" height="230px">
+	       <img src="${movie.trailerPicture}" width="200px" height="230px">
 	       <p>2 HR 1 MIN | PG 13<p>
 	     </div>
 	     <div class="col-md-9">
-	       <h2>Movie description</h2>
-	       <p>${movie.description}</p>
+	       <h2 class="movie-title">Movie description</h2>
+	       <p class="movie-synopsis">${movie.synopsis}</p>
 	     </div>
 	   </div>
 	   <div class="row">

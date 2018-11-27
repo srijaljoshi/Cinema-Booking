@@ -24,7 +24,7 @@
     <%--<% } %>--%>
     <div class="container-fluid">
         <div class="content">
-            <p class="movie-title">Featured Movie</p>
+            <p class="main-title">Featured Movie</p>
             <img src="https://www.foxmovies.com/s3/dev-temp/en-US/__5baed4994fd08.jpg" alt="" class="img-responsive">
         </div>
     </div>
@@ -39,6 +39,7 @@
                     <img src="${movie.trailerPicture}" class="img-thumbnail trailer-image">
                     <div class="movie-description">
                         <p>${movie.title}</p>
+                        <p><a href="/movie/${movie.id}" class="btn btn-default btn-sm">See Details</a></p>
                     </div>
                 </div>
             </c:forEach>
