@@ -176,6 +176,7 @@
   
 </head>
  <body>
+  <jsp:include page="menu-template.jsp" />
   <div class="container">
     <h1 style="color: black;">Confirm Purchase</h1>
 

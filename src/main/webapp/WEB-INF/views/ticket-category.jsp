@@ -19,6 +19,7 @@
    	<script src="<c:url value="/resources/js/tickets.js?newversion" />"></script>
 </head>
   <body id="demo">
+   <jsp:include page="menu-template.jsp" />
   <div class="container top top-buffer">
         <h1>Amount of Tickets</h1>
         <p>Enter the number of tickets you want to book:</p>

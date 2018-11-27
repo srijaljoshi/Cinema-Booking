@@ -131,13 +131,13 @@ public class BookingDaoImpl implements IBookingDao{
 
 	@Override
 	public int updateBookingWithPromo(String customerId, String promoId, String movieId, String creditNumber,
-		String totalPrice, String numberOfTickets) {
+		String totalPrice, String numberOfTickets, String showtimeId) {
 		/*
 		String query = "INSERT INTO Booking (customerID, movieID, creditCardNo, totalPrice, numTickets, promoId) VALUES(?,?,?,?,?,?)";
 		jdbcTemplate.update(query, customerId, movieId, creditNumber, totalPrice, numberOfTickets, promoId);
 		*/
 		
-		String query = "INSERT INTO Booking (customerID, movieID, creditCardNo, totalPrice, numTickets, promoId) VALUES(?,?,?,?,?,?)";
+		String query = "INSERT INTO Booking (customerID, movieID, creditCardNo, totalPrice, numTickets, promoId, showtimeId) VALUES(?,?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(
                 new PreparedStatementCreator() {
@@ -149,6 +149,7 @@ public class BookingDaoImpl implements IBookingDao{
                         ps.setDouble(4, Double.parseDouble(totalPrice));
                         ps.setInt(5, Integer.parseInt(numberOfTickets));
                         ps.setInt(6, Integer.parseInt(promoId));
+                        ps.setInt(7, Integer.parseInt(showtimeId));
                         return ps;
                     }
                 },
@@ -159,8 +160,8 @@ public class BookingDaoImpl implements IBookingDao{
 
 	@Override
 	public int updateBookingNoPromo(String customerId, String movieId, String creditNumber, String totalPrice,
-			String numberOfTickets) {
-		String query = "INSERT INTO Booking (customerID, movieID, creditCardNo, totalPrice, numTickets) VALUES(?,?,?,?,?)";
+			String numberOfTickets, String showtimeId) {
+		String query = "INSERT INTO Booking (customerID, movieID, creditCardNo, totalPrice, numTickets, showtimeId) VALUES(?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(
                 new PreparedStatementCreator() {
@@ -171,6 +172,7 @@ public class BookingDaoImpl implements IBookingDao{
                         ps.setString(3, creditNumber);
                         ps.setDouble(4, Double.parseDouble(totalPrice));
                         ps.setInt(5, Integer.parseInt(numberOfTickets));
+                        ps.setInt(6, Integer.parseInt(showtimeId));
                         return ps;
                     }
                 },

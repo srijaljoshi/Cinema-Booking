@@ -289,8 +289,8 @@ public class BookingController {
 			System.out.println("removing a ticket in booking controller");
 			bookingService.changeSeatAvailability(showtimeId, seatId);
 		}
-		String customerId = "31";
-
+		Customer c = (Customer) session.getAttribute("customer");
+		String customerId = Integer.toString(c.getId());
 		//Saving Credit Card info
 		System.out.println("---------credit card number: " + creditNumber);
 		int card = bookingService.checkCard(creditNumber);
@@ -306,10 +306,10 @@ public class BookingController {
 		String numberOfTickets = Integer.toString(booking.getNumberOfTickets());
 		int bookingId = -1;
 		if(promoId != null) {
-			bookingId = bookingService.addBookingWithPromo(customerId, promoId, movieId, creditNumber, totalPrice, numberOfTickets);			
+			bookingId = bookingService.addBookingWithPromo(customerId, promoId, movieId, creditNumber, totalPrice, numberOfTickets, showtimeId);			
 		}
 		else {
-			bookingId = bookingService.addBookingNoPromo(customerId, movieId, creditNumber, totalPrice, numberOfTickets);
+			bookingId = bookingService.addBookingNoPromo(customerId, movieId, creditNumber, totalPrice, numberOfTickets, showtimeId);
 		}
 		
 		int MovieShowID = bookingService.getMovieShowId(movieId, showtimeId);
@@ -324,6 +324,7 @@ public class BookingController {
 			bookingService.addTickets(Integer.toString(ageCategoryID), Integer.toString(seatID), Double.toString(price), Integer.toString(MovieShowID), Integer.toString(bookingId));
 		}
 		session.setAttribute("booking", booking);
+		
 		return "redirect:confirmation";
 	}
 	

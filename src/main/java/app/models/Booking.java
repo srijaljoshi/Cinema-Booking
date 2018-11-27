@@ -21,6 +21,7 @@ public class Booking {
     String movieName;
     Showtime showtime;
     int customerId;
+    String creditCardNo;
     
     public int getId() {
         return id;
@@ -132,6 +133,14 @@ public class Booking {
 
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
+	}
+
+	public String getCreditCardNo() {
+		return creditCardNo;
+	}
+
+	public void setCreditCardNo(String creditCardNo) {
+		this.creditCardNo = creditCardNo;
 	}
 
 	

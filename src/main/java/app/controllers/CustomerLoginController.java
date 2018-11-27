@@ -1,7 +1,11 @@
 package app.controllers;
 
 import app.models.Address;
+import app.models.Booking;
 import app.models.Customer;
+import app.models.Seat;
+import app.models.Showtime;
+import app.models.Ticket;
 import app.service.ICustomerService;
 import tools.CustomerTools;
 
@@ -13,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
@@ -191,5 +197,7 @@ public class CustomerLoginController {
     	customerService.updatePassword(customer);
     	return "login";
     }
+    
+    
     
 }

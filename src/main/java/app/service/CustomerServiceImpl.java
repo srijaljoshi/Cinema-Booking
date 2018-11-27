@@ -3,7 +3,12 @@ package app.service;
 import app.dao.IAddressDao;
 import app.dao.ICustomerDao;
 import app.models.Address;
+import app.models.Booking;
 import app.models.Customer;
+import app.models.Seat;
+import app.models.Showtime;
+import app.models.Ticket;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,4 +81,25 @@ public class CustomerServiceImpl implements ICustomerService {
 	public String updateToken(Customer customer) {
 		return customerDao.updateToken(customer);
 	}
+
+	@Override
+	public List<Booking> getBooking(String customerId) {
+		return customerDao.getAllBookings(customerId);
+	}
+
+	@Override
+	public List<Ticket> getTickets(String string) {
+		return customerDao.getAllTickets(string);
+	}
+
+	@Override
+	public Seat getSeat(String seatId) {
+		return customerDao.getSeat(seatId);
+	}
+	
+	@Override
+	public Showtime queryShowtime(String showtimeId) {
+		return customerDao.queryShowtimeObj(showtimeId);
+	}
+
 }
