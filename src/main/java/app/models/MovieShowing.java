@@ -9,10 +9,10 @@ public class MovieShowing {
     private int movieId;
     private int showtimeId;
     private int hallId;
-    private Date showDate;
+    private String showDate;
     private Movie movie;
 
-    public MovieShowing(Movie movie, int movieId, int showtimeId, int hallId, Date showDate) {
+    public MovieShowing(Movie movie, int movieId, int showtimeId, int hallId, String showDate) {
         this.movieId = movieId;
         this.showtimeId = showtimeId;
         this.hallId = hallId;
@@ -20,7 +20,11 @@ public class MovieShowing {
 
     }
 
-    public void setMovie(Movie movie) {
+    public MovieShowing() {
+		this.id = 0;
+	}
+
+	public void setMovie(Movie movie) {
         this.movie = movie;
     }
 
@@ -61,12 +65,11 @@ public class MovieShowing {
         return hallId;
     }
 
-    public void setShowDate(Date showDate) {
-
+    public void setShowDate(String showDate) {
         this.showDate = showDate;
     }
 
-    public Date getShowDate() {
+    public String getShowDate() {
         return showDate;
     }
 }

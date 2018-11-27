@@ -3,6 +3,7 @@ package app.controllers;
 import app.models.Address;
 import app.models.Customer;
 import app.service.ICustomerService;
+import app.service.IMovieService;
 import tools.CustomerTools;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,12 @@ public class CustomerLoginController {
     @Autowired
     private ICustomerService customerService;
 
+    @Autowired
+    private IMovieService movieService;
+
     @RequestMapping("/")
     public String index() {
-        return "home";
+        return "redirect:/";
     }
 
     
@@ -82,7 +86,6 @@ public class CustomerLoginController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-
     public String confirmation(@ModelAttribute("customer") Customer customer,
                                @ModelAttribute("address") Address address,
                                @RequestParam(name="promo", required = false) String enrollForPromotions,

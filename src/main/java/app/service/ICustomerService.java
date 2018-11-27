@@ -29,5 +29,6 @@ public interface ICustomerService {
 
 	public Customer findByEmail(String email);
 
-	
+
+    int deleteUser(Integer id);
 }

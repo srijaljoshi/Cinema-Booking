@@ -2,6 +2,7 @@ package app.controllers;
 
 import app.models.Customer;
 import app.service.ICustomerService;
+import app.service.IMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +16,6 @@ public class HomeController {
 
     @Autowired
     private ICustomerService customerService;
-
-    @RequestMapping("/")
-    public String hello() {
-        return "home";
-    }
 
     @RequestMapping(value = "addUser", method = RequestMethod.POST)
     public String addCustomer(@ModelAttribute("customer") Customer customer) {

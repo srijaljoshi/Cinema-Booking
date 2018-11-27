@@ -59,4 +59,5 @@ public interface ICustomerDao {
 	
 	public String updateToken(Customer customer);
 
+    int deleteUser(Integer id);
 }

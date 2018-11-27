@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+body{
+	position: relative;
+	top: 30px;
+}
+
+
+table{
+
+	align: center;
+	width: 30em;
+	height: 30em;
+}
+
+td{
+	text-align: center;
+}
+
+
+.taken {
+  	background-color: #32b648;
+}
+
+.taken:hover{
+	background-color: #a8fea2;
+}
+
+.available:hover{
+	  background-color: #9a9f95;
+}
+

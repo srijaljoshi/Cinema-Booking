@@ -196,5 +196,18 @@ public class CustomerDaoImpl implements ICustomerDao {
     	System.out.println("updated token for user");
     	return "Successfull";
 	}
-	
+
+
+    @Override
+    public int deleteUser(Integer id) {
+//        Repeated as removeById was already implemented
+        try {
+            jdbcTemplate.update("delete from Customer where id = ?", id);
+            return 1;
+        } catch (Exception e) {
+            System.out.println(">>> Problem deleting user!!!");
+            return 0;
+        }
+    }
+
 }

@@ -15,4 +15,5 @@ public interface IMovieService {
 
     List<Movie> findByTitle(String title);
 
+    Movie findById(Integer id);
 }

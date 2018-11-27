@@ -49,5 +49,11 @@ public class MovieServiceImpl implements IMovieService {
         return movieDao.findByTitle(title);
     }
 
+    @Transactional
+    @Override
+    public Movie findById(Integer id) {
+        return movieDao.findById(id);
+    }
+
 
 }

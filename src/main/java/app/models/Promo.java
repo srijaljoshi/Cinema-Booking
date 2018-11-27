@@ -7,7 +7,8 @@ public class Promo {
     private String code;
     private Date expirationDate;
     private double discountPercent;
-
+    int id;
+    
     public void setCode(String code) {
         this.code = code;
     }
@@ -32,4 +33,13 @@ public class Promo {
         return discountPercent;
     }
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+    
 }

@@ -67,6 +67,12 @@ public class CustomerServiceImpl implements ICustomerService {
 		return customerDao.findByEmail(email);
 	}
 
+	@Transactional
+    @Override
+    public int deleteUser(Integer id) {
+        return customerDao.deleteUser(id);
+    }
+
     @Override
 	public String updatePassword(Customer customer) {
 		return customerDao.updatePassword(customer);

@@ -12,4 +12,6 @@ public interface IMovieDao {
 
     void save(Movie m);
     List<Movie> findByTitle(String title);
+
+    Movie findById(Integer id);
 }
