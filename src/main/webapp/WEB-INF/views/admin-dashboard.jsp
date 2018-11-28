@@ -4,36 +4,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>Dashboard</title>
-
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/css/template.css" />">
+    <jsp:include page="template-imports.jsp" />
 </head>
 <body>
 
     <jsp:include page="menu-template.jsp" />
 
     <div class="container-fluid">
-        <h2>Hello Admin!</h2>
+        <br><br>
+        <h1 class="text-center">Hello Admin!</h1>
+        <hr>
         <div class="row">
-            <div class="col-sm-2 red-bdr">
-                <h2>Manage Movies</h2>
+
+            <div class="col-xs-4 ">
+                <h2 class="text-center"><a href="/a/movies">Manage Movies</a></h2>
             </div>
-            <div class="col-sm-2 red-bdr">
-                <h2>Manage Halls</h2>
+            <div class="col-xs-4 ">
+                <h2 class="text-center"><a href="/a/halls">Manage Halls</a></h2>
             </div>
-            <div class="col-sm-2 red-bdr">
-                <h2>Manage Users</h2>
-            </div>
-            <div class="col-sm-2 red-bdr">
-                <h2>Manage Showtimes</h2>
-            </div>
-            <div class="col-sm-2 red-bdr">
-                <h2>View Report</h2>
+            <div class="col-xs-4 ">
+                <h2 class="text-center"><a href="/a/users">Manage Users</a></h2>
             </div>
         </div>
     </div>

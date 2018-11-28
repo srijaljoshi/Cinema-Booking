@@ -1,9 +1,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-<link rel="stylesheet" href="<c:url value="/resources/css/template.css" />">
+<c:if test="${sessionScope.user == null}">
+    <link rel="stylesheet" href="<c:url value="/resources/css/template.css" />">
+</c:if>
+<c:if test="${sessionScope.admin == null}">
+    <link rel="stylesheet" href="<c:url value="/resources/css/usertheme.css" />">
+</c:if>
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

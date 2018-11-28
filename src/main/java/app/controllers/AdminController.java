@@ -5,6 +5,7 @@ import app.models.Customer;
 import app.models.Hall;
 import app.models.Movie;
 import app.service.IAdminService;
+import app.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,10 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    IAdminService adminService;
+    private IAdminService adminService;
+
+    @Autowired
+    private ICustomerService customerService;
 
 
     @RequestMapping("/dashboard")
@@ -147,6 +151,15 @@ public class AdminController {
     public String updateMovie(@ModelAttribute("movie") Movie m) {
         adminService.updateMovie(m);
         return "redirect:/a/movies";
+    }
+
+    @DeleteMapping("/users/{id}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody String deleteUser(@PathVariable("id") Integer id) {
+
+        int deletedStatus = customerService.deleteUser(id);
+        System.out.println(">>> Deleted with status: " + deletedStatus);
+        return "redirect:users";
     }
 
 }

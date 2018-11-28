@@ -201,6 +201,28 @@ public class CustomerDaoImpl implements ICustomerDao {
     	System.out.println("updated token for user");
     	return "Successfull";
 	}
+	
+	@Override
+	public String updateFirstName(Customer customer) {
+		this.jdbcTemplate.update("update Customer set firstName = ? where id = ?", customer.getFirstName(), customer.getId());
+    	return "Successfull";
+	}
+	
+	@Override
+	public void updateLastName(Customer customer) {
+		this.jdbcTemplate.update("update Customer set lastName = ? where id = ?", customer.getLastName(), customer.getId());
+	}
+	
+	@Override
+	public void updateEmailName(Customer customer) {
+		this.jdbcTemplate.update("update Customer set email = ? where id = ?", customer.getEmail(), customer.getId());
+	}
+	
+	@Override
+	public void updateSubscription(Customer customer) {
+		// TODO Auto-generated method stub
+		this.jdbcTemplate.update("update Customer set enrolledForPromotions = ? where id = ?", customer.getEnrolledForPromotions(), customer.getId());
+	}
 
 	@Override
 	public List<Booking> getAllBookings(String customerId) {
@@ -214,7 +236,7 @@ public class CustomerDaoImpl implements ICustomerDao {
 						b.setId(rs.getInt("id"));
 						b.setCustomerId(rs.getInt("customerID"));
 						b.setMovieId(rs.getInt("movieID"));
-						b.setCouponId(rs.getInt("promoId)"));
+						b.setCouponId(rs.getInt("promoId"));
 						b.setTotalPrice(rs.getDouble("totalPrice"));
 						b.setNumberOfTickets(rs.getInt("numTickets"));
 						b.setCreditCardNo(rs.getString("creditCardNo"));
@@ -227,11 +249,11 @@ public class CustomerDaoImpl implements ICustomerDao {
 	}
 
 	@Override
-	public List<Ticket> getAllTickets(String string) {
-		String query = "select * from Ticket where customerID = ?";
+	public List<Ticket> getAllTickets(String string, String bookingId) {
+		String query = "select * from Ticket where bookingId = ?";
 		List<Ticket> tickets = jdbcTemplate.query(
 				query,
-				new Object[] {string},
+				new Object[] {bookingId},
 				new RowMapper<Ticket>() {
 					public Ticket mapRow(ResultSet rs, int rowNum) throws SQLException {
 						Ticket t = new Ticket();
@@ -280,6 +302,39 @@ public class CustomerDaoImpl implements ICustomerDao {
 		return showtime;
 	}
 
+    @Override
+    public int deleteUser(Integer id) {
+//        Repeated as removeById was already implemented
+        try {
+            jdbcTemplate.update("delete from Customer where id = ?", id);
+            return 1;
+        } catch (Exception e) {
+            System.out.println(">>> Problem deleting user!!!");
+            return 0;
+        }
+    }
 
-	
+	@Override
+	public void updateSeatStatus(String showtimeId, String seatId) {
+		String query = "update SeatShowtime set taken = '0' where showtimeID = ? and seatID = ?";
+		jdbcTemplate.update(query, showtimeId, seatId);
+	}
+
+	@Override
+	public void deleteTicket(String ticketId) {
+		// TODO Auto-generated method stub
+		String sql = "DELETE FROM Ticket WHERE id = ?";
+	    Object[] args = new Object[] {ticketId};
+	    jdbcTemplate.update(sql, args);
+		
+	}
+
+	@Override
+	public void deleteBooking(String bookingId) {
+		// TODO Auto-generated method stub
+		String sql = "DELETE FROM Booking WHERE id = ?";
+	    Object[] args = new Object[] {bookingId};
+	    jdbcTemplate.update(sql, args);
+	}
+
 }

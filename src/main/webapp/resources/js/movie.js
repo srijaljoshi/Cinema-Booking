@@ -44,7 +44,9 @@ $(".btn-delete-movie").click(function (e) {
 
 });
 
-// Get search results
+/**
+ * Get search results using ajax resquest
+ */
 
 var searchResults = $("#searchResults");
 
@@ -54,7 +56,7 @@ $("#btn-search-movie").click(function (e) {
     // var urlParams = new URLSearchParams(window.location.search);
     // alert("Url Params: " + urlParams)
     var movieTitle = document.getElementById("movieTitle").value;
-    searchResults.empty();
+    searchResults.empty(); // clear the div before displaying items for a new request
     $.ajax({
         url: "/u/search_results/",
         method: "GET",
@@ -81,7 +83,7 @@ var displayMovie = function(movie) {
     var trailerPicture = movie.trailerPicture;
     htmlstring += "" +
         "<div class='col-md-4'>" +
-        "<img class='img-thumbnail' style='width: 200px; height: 300px;' src=" + trailerPicture + "> " +
+        "<img class='img-thumbnail'  style='height: 300px; weight: 200px;' src=" + trailerPicture + "> " +
         "<p> Title: " + movie.title + "</p>" +
         "<p>Director: " + movie.director + "</p>" +
         "</div>";

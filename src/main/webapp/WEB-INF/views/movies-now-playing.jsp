@@ -6,60 +6,27 @@
 <html lang="en">
 <head>
     <jsp:include page="template-imports.jsp" />
-    <title>Cinema EBooking</title>
+    <title>Now Playing</title>
 </head>
 <body>
-    <jsp:include page="menu-template.jsp" />
+<jsp:include page="menu-template.jsp" />
 
-    <%--<p>Customer: ${customer.firstName}</p>--%>
+<br><br>
 
-    <%--<c:if test="${logout} != null" >--%>
-        <%--&lt;%&ndash;TODO: ADD A CSS CLASS &ndash;%&gt;--%>
-        <%--<p class="flash-message">Logged out: ${logout}</p>--%>
-    <%--</c:if>--%>
+<h1 class="movie-title"> Now Playing </h1>
+<div class="container container-fluid">
+    <div class="row">
 
-    <%--<% if(request.getAttribute("logout") != null) { %>--%>
-        <%--<%= "Log out status: " + request.getAttribute("logout") %>--%>
-        <%--<% request.removeAttribute("logout"); %>--%>
-    <%--<% } %>--%>
-    <div class="jumbotron">
-        <div class="content">
-            <p>Featured Movie</p>
-            <img src="http://www.fallenarisemusic.com/wp-content/uploads/2017/08/Enjoy-online-movies-for-your-mind-relaxation.jpg"
-                 alt="" class="img-responsive">
-        </div>
+        <c:forEach var="movie" items="${movies}" >
+            <div class="col-md-3 col-xs-6">
+                <img src="${movie.trailerPicture}" class="img-thumbnail trailer-image">
+                <div class="movie-description">
+                    <p>${movie.title}</p>
+                    <p><a href="/movie/${movie.id}" class="btn btn-default btn-sm">See Details</a></p>
+                </div>
+            </div>
+        </c:forEach>
     </div>
-    <div class="container container-fluid">
-        <div class="row">
-            <div class="col-md-3 col-xs-6">
-                <img src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_600,q_auto,w_400/v1/amc-cdn/production/2/movies/56400/56403/PosterDynamic/46537.jpg"
-                     alt="movie 1" class="img-thumbnail">
-                <p>Movie 1</p>
-            </div>
-
-            <div class="col-md-3 col-xs-6">
-                <img src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_600,q_auto,w_400/v1/amc-cdn/production/2/movies/56400/56403/PosterDynamic/46537.jpg"
-                     alt="movie 1" class="img-thumbnail">
-                <p>Movie 1</p>
-            </div>
-            <div class="col-md-3 col-xs-6">
-                <img src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_600,q_auto,w_400/v1/amc-cdn/production/2/movies/56400/56403/PosterDynamic/46537.jpg"
-                     alt="movie 1" class="img-thumbnail">
-                <p>Movie 1</p>
-            </div>
-            <div class="col-md-3 col-xs-6">
-                <img src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_600,q_auto,w_400/v1/amc-cdn/production/2/movies/56400/56403/PosterDynamic/46537.jpg"
-                     alt="movie 1" class="img-thumbnail">
-                <p>Movie 1</p>
-            </div>
-            <div class="col-md-3 col-xs-6">
-                <img src="https://amc-theatres-res.cloudinary.com/image/upload/f_auto,fl_lossy,h_600,q_auto,w_400/v1/amc-cdn/production/2/movies/56400/56403/PosterDynamic/46537.jpg"
-                     alt="movie 1" class="img-thumbnail">
-                <p>Movie 1</p>
-            </div>
-
-
-        </div>
-    </div>
+</div>
 </body>
 </html>

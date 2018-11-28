@@ -3,6 +3,7 @@ package app.models;
 public class Ticket {
 
 	private int id;
+	String type;
     private int category;
     private String seatLocation;
     private Seat seat;
@@ -74,6 +75,15 @@ public class Ticket {
 	public void setBookingId(int bookingId) {
 		this.bookingId = bookingId;
 	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
 	
 	
 	

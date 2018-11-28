@@ -22,8 +22,8 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">${sessionScope.customer.firstName}
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/edit_profile">Edit Profile</a></li>
-                        <li><a href="/order_history">View Order History</a></li>
+                        <li><a href="/u/edit-profile">Edit Profile</a></li>
+                        <li><a href="/u/order-history">View Order History</a></li>
                     </ul>
                 </li>
             </ul>

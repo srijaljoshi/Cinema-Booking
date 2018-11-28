@@ -65,7 +65,6 @@ public class MovieShowing {
         return hallId;
     }
 
-
     public void setShowDate(String showDate) {
         this.showDate = showDate;
     }

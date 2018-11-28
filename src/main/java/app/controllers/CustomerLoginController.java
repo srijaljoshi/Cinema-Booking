@@ -7,6 +7,7 @@ import app.models.Seat;
 import app.models.Showtime;
 import app.models.Ticket;
 import app.service.ICustomerService;
+import app.service.IMovieService;
 import tools.CustomerTools;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,12 @@ public class CustomerLoginController {
     @Autowired
     private ICustomerService customerService;
 
+    @Autowired
+    private IMovieService movieService;
+
     @RequestMapping("/")
     public String index() {
-        return "home";
+        return "redirect:/";
     }
 
     
@@ -77,7 +81,7 @@ public class CustomerLoginController {
             System.out.println(">>> Logging out as user " + session.getAttribute("customer"));
             session.invalidate();
             model.addAttribute("logout", "SUCCESS");
-            return "home";
+            return "redirect:/u/";
         }
         return "redirect:/";
     }
@@ -197,7 +201,5 @@ public class CustomerLoginController {
     	customerService.updatePassword(customer);
     	return "login";
     }
-    
-    
     
 }

@@ -4,11 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/css/template.css" />">
+    <jsp:include page="template-imports.jsp" />
     <title>Manage Users</title>
 </head>
 
@@ -43,17 +39,23 @@
             <tbody>
 
             <c:forEach items="${customers}" var="customer" >
-                <tr>
-                    <th scope="row">${customer.id}</th>
+                <tr zid="${customer.id}">
+                    <th id="userID" scope="row">${customer.id}</th>
                     <td>${customer.firstName}</td>
                     <td>${customer.lastName}</td>
                     <td>${customer.statusID}</td>
-                    <td><input class="btn btn-primary btn-sm" type="submit" value="Delete"></td>
+                    <td><a class="btn btn-primary btn-sm btn-edit-user">Edit</a></td>
                     <c:if test="${customer.statusID == 1}" >
-                        <td><a href="/a/users/${customer.id}/suspend" class="btn btn-danger btn-sm">Suspend</a></td>
+                        <td>
+                            <a href="/a/users/${customer.id}/suspend" class="btn btn-info btn-sm">Suspend</a>
+                            <button class="btn btn-danger btn-sm btn-delete-user">Delete</button>
+                        </td>
                     </c:if>
                     <c:if test="${customer.statusID == 2}" >
-                        <td><a href="/a/users/${customer.id}/reactivate" class="btn btn-success btn-sm">Activate</a></td>
+                        <td>
+                            <a href="/a/users/${customer.id}/reactivate" class="btn btn-success btn-sm">Activate</a>
+                            <button class="btn btn-danger btn-sm btn-delete-user">Delete</button>
+                        </td>
                     </c:if>
 
                 </tr>
@@ -63,5 +65,6 @@
     </div>
 
     <script src="<c:url value="/resources/js/search.js" />" type="application/javascript"></script>
+    <script src="<c:url value="/resources/js/customer.js" />" type="application/javascript"></script>
 </body>
 </html>

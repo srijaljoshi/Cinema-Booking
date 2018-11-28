@@ -34,12 +34,30 @@ public interface ICustomerService {
 
 	public Customer findByEmail(String email);
 
+
 	public List<Booking> getBooking(String customerId);
 
-	public List<Ticket> getTickets(String string);
+	public List<Ticket> getTickets(String string, String bookingId);
 
 	public Seat getSeat(String seatId);
 	
 	public Showtime queryShowtime(String showtimeId);
+
+	
+    int deleteUser(Integer id);
+
+	public void updateSeatStatus(String showtimeId, String seatId);
+
+	public void removeTicket(String ticketId);
+
+	public void removeBooking(String bookingId);
+	
+	String updateFirstName(Customer customer);
+
+	public void updateLastName(Customer customer);
+	
+	public void updateEmail(Customer customer);
+
+	public void updateSubscription(Customer customer);
 
 }

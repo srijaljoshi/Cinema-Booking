@@ -9,11 +9,12 @@
 <html>
 <head>
 	<title>Order Summary</title>
-	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/css/template.css" />">
+	    <jsp:include page="template-imports.jsp"/>
     <script src="<c:url value="/resources/js/applyPromo.js?newversion" />"></script>
 </head>
 <body>
+
+<jsp:include page="menu-template.jsp" />
     <h1>Order Summary</h1>
     <div class="col-25">
 		<div class="container">

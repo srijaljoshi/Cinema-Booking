@@ -72,6 +72,12 @@ public class CustomerServiceImpl implements ICustomerService {
 		return customerDao.findByEmail(email);
 	}
 
+	@Transactional
+    @Override
+    public int deleteUser(Integer id) {
+        return customerDao.deleteUser(id);
+    }
+
     @Override
 	public String updatePassword(Customer customer) {
 		return customerDao.updatePassword(customer);
@@ -88,8 +94,8 @@ public class CustomerServiceImpl implements ICustomerService {
 	}
 
 	@Override
-	public List<Ticket> getTickets(String string) {
-		return customerDao.getAllTickets(string);
+	public List<Ticket> getTickets(String string, String bookingId) {
+		return customerDao.getAllTickets(string, bookingId);
 	}
 
 	@Override
@@ -102,4 +108,44 @@ public class CustomerServiceImpl implements ICustomerService {
 		return customerDao.queryShowtimeObj(showtimeId);
 	}
 
+	@Override
+	public void updateSeatStatus(String showtimeId, String seatId) {
+		customerDao.updateSeatStatus(showtimeId, seatId);
+	}
+
+	@Override
+	public void removeTicket(String ticketId) {
+		// TODO Auto-generated method stub
+		customerDao.deleteTicket(ticketId);
+	}
+
+	@Override
+	public void removeBooking(String bookingId) {
+		// TODO Auto-generated method stub
+		customerDao.deleteBooking(bookingId);
+	}
+
+	@Override
+	public String updateFirstName(Customer customer) {
+		return customerDao.updateFirstName(customer);
+	}
+
+	@Override
+	public void updateLastName(Customer customer) {
+		// TODO Auto-generated method stub
+		customerDao.updateLastName(customer);
+	}
+
+	@Override
+	public void updateEmail(Customer customer) {
+		customerDao.updateEmailName(customer);
+	}
+
+	@Override
+	public void updateSubscription(Customer customer) {
+		customerDao.updateSubscription(customer);
+		
+	}
+
+	
 }

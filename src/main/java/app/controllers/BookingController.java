@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
+import app.service.IMovieService;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -17,6 +18,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,14 +47,18 @@ public class BookingController {
 	
 	@Autowired
     private IBookingService bookingService;
-	
+
+	@Autowired
+	private IMovieService movieService;
+
 	/**
 	 * Function returns movie information to the user and allows the choice of booking
 	 * @return 
 	 */
 	@RequestMapping("/testBooking")
-    public String testBooking() {
-        return "testBooking";
+    public String testBooking(@RequestParam("movie_id") Integer id, Model model) {
+        model.addAttribute("movie", movieService.findById(id));
+		return "testBooking";
     }
 	
 	/**
