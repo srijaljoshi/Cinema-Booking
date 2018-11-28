@@ -22,7 +22,9 @@
             <img src="${movie.trailerPicture}" class="detail-image">
             <br><br>
             <p>${movie.duration} | ${movie.rating}<p>
+            <c:if test="${movie.playing == 1}">
                 <a href="/u/testBooking?movie_id=${movie.id}" class="btn btn-primary btn-sm">Book this movie</a>
+            </c:if>
             </div>
 
         <div class="col-md-8">

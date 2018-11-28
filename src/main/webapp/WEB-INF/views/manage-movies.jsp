@@ -148,6 +148,7 @@
         <tr>
             <th scope="col">id</th>
             <th scope="col">Title</th>
+            <th scope="col">Synopsis</th>
             <th scope="col">Director</th>
             <th scope="col">Rating</th>
         </tr>
@@ -158,6 +159,7 @@
             <tr zid="${movie.id}">
                 <th scope="row" id="movieID">${movie.id}</th>
                 <td>${movie.title}</td>
+                <td>${movie.synopsis}</td>
                 <td>${movie.director}</td>
                 <td>${movie.rating}</td>
                 <td><a class="btn btn-primary btn-sm btn-edit-movie"  data-toggle="modal" data-target="#exampleModal">Edit</a></td>

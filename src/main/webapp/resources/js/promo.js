@@ -28,89 +28,24 @@ if(document.getElementById("myInput") != null) {
  * AJAX request for deleting movie
  */
 
-$(".btn-delete-movie").click(function (e) {
+$(".btn-delete-promo").click(function (e) {
     e.preventDefault();
-    var id = document.getElementById("movieID").innerText;
+    // var id = document.getElementById("movieID").innerText;
     var tr = $(this).closest('tr');
     var del_id = tr.attr('zid');
-    $.ajax({
-        url: "/a/movies/" + del_id,
-        method: "DELETE",
-        success: function (data) {
-            alert("Deleted a movie with id = " + del_id);
-            tr.remove();
-        }
-    });
-
-});
-
-/**
- * Get search results using ajax resquest
- */
-
-var searchResults = $("#searchResults");
-
-$("#btn-search-movie").click(function (e) {
-    e.preventDefault();
-    //
-    // var urlParams = new URLSearchParams(window.location.search);
-    // alert("Url Params: " + urlParams)
-    var movieTitle = document.getElementById("movieTitle").value;
-    searchResults.empty(); // clear the div before displaying items for a new request
-    $.ajax({
-        url: "/u/search_results/",
-        method: "GET",
-        data: {
-            "title": movieTitle
-        },
-        contentType: "application/json",
-        success: function (movies) {
-            console.log(movies);
-            // $("#searchResults").append(JSON.stringify(movies));
-            // alert("Found a movie with title = " + data.title);
-            for(i=0; i<movies.length; i++) {
-                displayMovie(movies[i]);
+    if(confirm("Are you sure?")) {
+        $.ajax({
+            url: "/a/promos/" + del_id,
+            method: "DELETE",
+            success: function (data) {
+                alert("Deleted a promo with id = " + del_id);
+                tr.remove();
+                console.log(data);
             }
-        }
-    });
+        });
+    }
+    else {
+        console.log("Not deleted!");
+    }
 
 });
-
-var displayMovie = function(movie) {
-
-    var htmlstring = "";
-
-    var trailerPicture = movie.trailerPicture;
-    htmlstring += "" +
-        "<div class='col-md-4'>" +
-        "<img class='img-thumbnail'  style='height: 300px; weight: 200px;' src=" + trailerPicture + "> " +
-        "<p> Title: " + movie.title + "</p>" +
-        "<p>Director: " + movie.director + "</p>" +
-        "</div>";
-
-    // htmlstring.append("Tello");
-
-    searchResults.append(htmlstring);
-    // $('#searchResults').append('<img class="img-thumbnail" src="' + movie.trailerPicture + '">');
-    // $('#searchResults').append('<p> Title: ' + movie.title + '</p>');
-    // $('#searchResults').append('<p>Director: ' + movie.director+ '</p>');
-}
-
-$("#btn-clear-movie").click(function (e) {
-    e.preventDefault();
-    $("#searchResults").empty();
-});
-
-
-// $('#newMovieForm').submit(function (e) {
-//     e.preventDefault();
-//     console.log($( this ).serialize());
-//     // $.ajax(
-//     //     method: 'GET',
-//     //
-//     // );
-//     $.post("/a/movies/new", $('newMovieForm').serialize(), function(data, status){
-//         // console.log("\nStatus: " + status);
-//     });
-//
-// });

@@ -21,42 +21,24 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Add new movie</h3>
+                <h3 class="modal-title" id="exampleModalLabel">Add new promo</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     &times;
                 </button>
             </div>
             <div class="modal-body">
-                <form id="newMovieForm" action="/a/movies/new" method="post">
+                <form id="newPromoForm" action="/a/promos/new" method="post">
                     <div class="form-group">
-                        <label>Movie Title</label>
-                        <input type="text" name="title" class="form-control" placeholder="Title">
+                        <label>Promo Code</label>
+                        <input type="text" name="code" class="form-control" placeholder="Code">
                     </div>
                     <div class="form-group">
-                        <label>Director</label>
-                        <input type="text" name="director" class="form-control" placeholder="Director">
+                        <label>Expiration data</label>
+                        <input type="date" name="expirationDate" class="form-control" placeholder="Expiration date">
                         <br>
-                        <label>Trailer Video</label>
-                        <input type="text" name="trailerVideo" class="form-control" placeholder="Trailer Video link">
+                        <label>Discount Percent</label>
+                        <input type="number" name="discountPercent" class="form-control" placeholder="Discount Percent">
                         <br>
-                        <label>Trailer Picture</label>
-                        <input type="text" name="trailerPicture" class="form-control" placeholder="Trailer Picture link">
-                        <br>
-                    </div>
-                    <div class="form-group">
-                        <label>Synopsis</label>
-                        <textarea class="form-control" name="synopsis">Enter the movie synopsis</textarea>
-                        <br>
-                        <label>Duration</label>
-                        <input class="form-control" type="text" name="duration"  placeholder="Duration">
-                    </div>
-                    <div class="form-group">
-                        <label for="selectRating">Rating</label>
-                        <select name="rating" class="form-control" id="selectRating">
-                            <option>G</option>
-                            <option>PG-13</option>
-                            <option>R</option>
-                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm">Submit</button>
                 </form>
@@ -68,60 +50,6 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Edit Movie</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    &times;
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="editMovieForm" action="/a/movies/edit" method="post">
-                    <div class="form-group">
-                        <label>Movie Title</label>
-                        <input type="text" name="title" class="form-control" placeholder="Title">
-                    </div>
-                    <div class="form-group">
-                        <label>Director</label>
-                        <input type="text" name="director" class="form-control" placeholder="Director">
-                        <br>
-                        <label>Trailer Video</label>
-                        <input type="text" name="trailerVideo" class="form-control" placeholder="Trailer Video link">
-                        <br>
-                        <label>Trailer Picture</label>
-                        <input type="text" name="trailerPicture" class="form-control" placeholder="Trailer Picture link">
-                        <br>
-                    </div>
-                    <div class="form-group">
-                        <label>Synopsis</label>
-                        <textarea class="form-control" name="synopsis">Enter the movie synopsis</textarea>
-                        <br>
-
-                        <label>Duration</label>
-                        <input class="form-control" type="text" name="duration" >
-                    </div>
-                    <div class="form-group">
-                        <label for="selectRating">Rating</label>
-                        <select name="rating" class="form-control" id="selectRatingUpdate">
-                            <option>G</option>
-                            <option>PG-13</option>
-                            <option>R</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn-sm btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <div class="container">
 
@@ -129,12 +57,12 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-md-3">
-                    <input type="text" id="myInput" class="form-control" placeholder="Search Movie"> <br>
+                    <input type="text" id="myInput" class="form-control" placeholder="Search Promo"> <br>
                     <input type="submit" class="btn btn-primary btn-sm">
 
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
-                        Add new Movie
+                        Add new Promo
                     </button>
 
                 </div>
@@ -147,28 +75,27 @@
         <thead>
         <tr>
             <th scope="col">id</th>
-            <th scope="col">Title</th>
-            <th scope="col">Director</th>
-            <th scope="col">Rating</th>
+            <th scope="col">Code</th>
+            <th scope="col">Expiration Date</th>
+            <th scope="col">Discount Percent</th>
         </tr>
         </thead>
         <tbody>
 
-        <c:forEach items="${movies}" var="movie" >
-            <tr zid="${movie.id}">
-                <th scope="row" id="movieID">${movie.id}</th>
-                <td>${movie.title}</td>
-                <td>${movie.director}</td>
-                <td>${movie.rating}</td>
-                <td><a class="btn btn-primary btn-sm btn-edit-movie"  data-toggle="modal" data-target="#exampleModal">Edit</a></td>
-                <td><a href="#" class="btn btn-danger btn-sm btn-delete-movie">Delete</a></td>
+        <c:forEach items="${promos}" var="promo" >
+            <tr zid="${promo.id}">
+                <th scope="row">${promo.id}</th>
+                <td>${promo.code}</td>
+                <td>${promo.expirationDate}</td>
+                <td>${promo.discountPercent}</td>
+                <td><a href="#" class="btn btn-danger btn-sm btn-delete-promo">Delete</a></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
 </div>
 
-<script src="<c:url value="/resources/js/movie.js" />" type="application/javascript">
+<script src="<c:url value="/resources/js/promo.js" />" type="application/javascript">
 </script>
 </body>
 </html>

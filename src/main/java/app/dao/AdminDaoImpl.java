@@ -1,9 +1,6 @@
 package app.dao;
 
-import app.models.Admin;
-import app.models.Customer;
-import app.models.Hall;
-import app.models.Movie;
+import app.models.*;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.type.Type;
@@ -104,4 +101,18 @@ public class AdminDaoImpl implements IAdminDao {
         sessionFactory.getCurrentSession().update(m);
     }
 
+    @Override
+    public void savePromo(Promo promo) {
+        sessionFactory.getCurrentSession().persist(promo);
+    }
+
+    @Override
+    public List<Promo> listPromo() {
+        return sessionFactory.getCurrentSession().createQuery("From Promo").list();
+    }
+
+    @Override
+    public int deletePromo(Integer id) {
+        return sessionFactory.getCurrentSession().createQuery("delete from Promo where id=:pid").setInteger("pid", id).executeUpdate();
+    }
 }

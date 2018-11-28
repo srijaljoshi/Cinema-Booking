@@ -1,9 +1,6 @@
 package app.controllers;
 
-import app.models.Admin;
-import app.models.Customer;
-import app.models.Hall;
-import app.models.Movie;
+import app.models.*;
 import app.service.IAdminService;
 import app.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -130,8 +127,14 @@ public class AdminController {
         return "redirect:/a/movies";
     }
 
+    @PostMapping("/movies/edit")
+    public String updateMovie(@ModelAttribute("movie") Movie m) {
+        adminService.updateMovie(m);
+        return "redirect:/a/movies";
+    }
+
     @GetMapping("/halls")
-    public String getHalls(Model model, HttpSession session) {
+    public String manageHalls(Model model, HttpSession session) {
         if (session.getAttribute("admin") != null) {
             model.addAttribute("halls", adminService.listHalls());
             return "manage-halls";
@@ -147,10 +150,20 @@ public class AdminController {
         return "redirect:/a/halls";
     }
 
-    @PostMapping("/movies/edit")
-    public String updateMovie(@ModelAttribute("movie") Movie m) {
-        adminService.updateMovie(m);
-        return "redirect:/a/movies";
+    @GetMapping("/promos")
+    public String managePromos(Model model, HttpSession session) {
+        if (session.getAttribute("admin") != null) {
+            model.addAttribute("promos", adminService.listPromos());
+            return "manage-promo";
+        }
+        // else
+        return "redirect:login";
+    }
+    @PostMapping("/promos/new")
+    public String newPromo(@ModelAttribute("promo") Promo promo) {
+        System.out.println(">>>Got promo from form with discount:  " + promo.getDiscountPercent());
+        adminService.savePromo(promo);
+        return "redirect:/a/promos";
     }
 
     @DeleteMapping("/users/{id}")
@@ -162,4 +175,11 @@ public class AdminController {
         return "redirect:users";
     }
 
+    @DeleteMapping("/promos/{id}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody String deletePromo(@PathVariable("id") Integer id) {
+        int deletedStatus = adminService.deletePromo(id);
+        System.out.println(">>> Deleted promo with status: " + deletedStatus);
+        return "redirect:promos";
+    }
 }

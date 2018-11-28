@@ -37,9 +37,8 @@
             <div class="navbar-brand"><a href="" class="no-underline"><span>Movie Booking</span></a></div>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">Home</a></li>
-                <li class="nav-item"><a href="">Browse Movies</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Movies
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Browse  Movies
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/movies_playing">Now Playing</a></li>
@@ -63,7 +62,7 @@
                 <li><a href="/a/movies">Manage Movies</a></li>
                 <li><a href="/a/users">Manage Users</a></li>
                 <li><a href="/a/halls">Manage Halls</a></li>
-                <%--<li><a href="">Manage Showtimes</a></li>--%>
+                <li><a href="/a/promos">Manage Promos</a></li>
                 <%--<li><a href="">Manage Seats</a></li>--%>
                 <li><a href="/a/logout">Logout</a></li>
                 <li><a>Hello, ${sessionScope.admin.firstName}</a></li>

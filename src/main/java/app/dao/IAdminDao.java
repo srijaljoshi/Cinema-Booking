@@ -1,9 +1,6 @@
 package app.dao;
 
-import app.models.Admin;
-import app.models.Customer;
-import app.models.Hall;
-import app.models.Movie;
+import app.models.*;
 
 import java.util.List;
 
@@ -42,4 +39,10 @@ public interface IAdminDao {
     void saveHall(Hall hall);
 
     void updateMovie(Movie m);
+
+    void savePromo(Promo promo);
+
+    List<Promo> listPromo();
+
+    int deletePromo(Integer id);
 }

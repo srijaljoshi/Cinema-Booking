@@ -27,4 +27,10 @@ public interface IAdminService {
     void saveHall(Hall hall);
 
     void updateMovie(Movie m);
+
+    void savePromo(Promo promo);
+
+    List<Promo> listPromos();
+
+    int deletePromo(Integer id);
 }

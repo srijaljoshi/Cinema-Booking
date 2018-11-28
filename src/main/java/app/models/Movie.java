@@ -22,6 +22,7 @@ public class Movie {
     private String producer;
     private String cast;    //map to actor
     private String duration;        //https://www.mkyong.com/java/how-to-get-current-timestamps-in-java/
+    private int playing;
 
     public void displayInfo() {
 
@@ -113,5 +114,13 @@ public class Movie {
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+
+    public int getPlaying() {
+        return playing;
+    }
+
+    public void setPlaying(int playing) {
+        this.playing = playing;
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Service
@@ -106,5 +107,26 @@ public class AdminServiceImpl implements IAdminService {
     @Override
     public void updateMovie(Movie m) {
         adminDao.updateMovie(m);
+    }
+
+    @Transactional
+    @Override
+    public void savePromo(Promo promo) {
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        sdf.applyPattern(promo.getExpirationDate().toString());
+//        promo.setExpirationDate(java.sql.Date.valueOf(promo.getExpirationDate().toString()));
+        adminDao.savePromo(promo);
+    }
+
+    @Transactional
+    @Override
+    public List<Promo> listPromos() {
+        return adminDao.listPromo();
+    }
+
+    @Transactional
+    @Override
+    public int deletePromo(Integer id) {
+        return adminDao.deletePromo(id);
     }
 }

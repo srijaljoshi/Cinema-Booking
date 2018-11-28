@@ -25,6 +25,12 @@
             <div class="col-xs-4 ">
                 <h2 class="text-center"><a href="/a/users">Manage Users</a></h2>
             </div>
+            <div class="col-xs-4 ">
+                <h2 class="text-center"><a href="/a/promos">Manage Promos</a></h2>
+            </div>
+            <div class="col-xs-4 ">
+                <h2 class="text-center"><a href="#">Manage Showtimes</a></h2>
+            </div>
         </div>
     </div>
 
