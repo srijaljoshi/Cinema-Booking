@@ -8,17 +8,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-	<script src="<c:url value="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" />"></script>
 	<link rel="stylesheet" href="<c:url value="/resources/css/booking.css" />">
-	<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/css/template.css" />">
+	<jsp:include page="template-imports.jsp"/>
    	<script src="<c:url value="/resources/js/tickets.js?newversion" />"></script>
 </head>
   <body id="demo">
+   <jsp:include page="menu-template.jsp" />
   <div class="container top top-buffer">
         <h1>Amount of Tickets</h1>
         <p>Enter the number of tickets you want to book:</p>

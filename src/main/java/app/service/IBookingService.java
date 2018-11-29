@@ -31,10 +31,10 @@ public interface IBookingService {
 	public int findSeatId(String hallId, String location);
 
 	public int addBookingWithPromo(String customerId, String promoId, String movieId, String creditNumber,
-			String totalPrice, String numberOfTickets);
+			String totalPrice, String numberOfTickets, String showtimeId);
 
 	public int addBookingNoPromo(String customerId, String movieId, String creditNumber, String totalPrice,
-			String numberOfTickets);
+			String numberOfTickets, String showtimeId);
 
 	public int checkCard(String creditNumber);
 

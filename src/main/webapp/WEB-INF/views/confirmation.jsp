@@ -102,8 +102,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/css/template.css" />">
+    <jsp:include page="template-imports.jsp"/>
 </head>
 <body>
     
@@ -119,20 +118,7 @@
     </div> -->
     
     
-  <div class="navbar-inverse navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-          <div class="navbar-brand"><a href="#" class="no-underline"><span>Movie Booking</span></a></div>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Home</a></li>
-            <li><a href="">Browse All</a></li>
-            <li><a href="">Search</a></li>
-            <li><a href="">About</a></li>
-            <li><a href="">Contact</a></li>
-            <li><a href="">Sign Up</a></li>
-            <li><a href="">Sign In</a></li>
-          </ul>
-        </div>
-      </div>
+   <jsp:include page="menu-template.jsp" />
     
     <div class="container">
     <h1>Order Confirmation</h1>
@@ -140,9 +126,9 @@
     <div class ="signInInfo">
         <br>
         <div class ="getEP">
-            <h3>Movie: ${ }
+            <h3>Movie: ${title}
 			<br>
-			Date: ${shotime.date}
+			Date: ${booking.showtime.date}
 			<br>
 			Time: ${booking.showtime.time}</h3>
 			
@@ -153,7 +139,7 @@
             </c:forEach>
 			</p>
 			
-			<p>TOTAL<tab1>$ ${booking.totalPrice}</tab1></p>
+			<p>TOTAL <tab1>$<span>${booking.totalPrice}</span></tab1></p>
             <br>
             <br>
         </div>

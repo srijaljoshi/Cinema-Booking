@@ -140,11 +140,11 @@
             <version>2.9.1</version>
         </dependency>
 
-        <dependency>
+<!--         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.7</version>
-        </dependency>
+        </dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
 		<dependency>

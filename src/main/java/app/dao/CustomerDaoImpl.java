@@ -1,6 +1,11 @@
 package app.dao;
 
+import app.models.Booking;
 import app.models.Customer;
+import app.models.Seat;
+import app.models.Showtime;
+import app.models.Ticket;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -196,7 +201,106 @@ public class CustomerDaoImpl implements ICustomerDao {
     	System.out.println("updated token for user");
     	return "Successfull";
 	}
+	
+	@Override
+	public String updateFirstName(Customer customer) {
+		this.jdbcTemplate.update("update Customer set firstName = ? where id = ?", customer.getFirstName(), customer.getId());
+    	return "Successfull";
+	}
+	
+	@Override
+	public void updateLastName(Customer customer) {
+		this.jdbcTemplate.update("update Customer set lastName = ? where id = ?", customer.getLastName(), customer.getId());
+	}
+	
+	@Override
+	public void updateEmailName(Customer customer) {
+		this.jdbcTemplate.update("update Customer set email = ? where id = ?", customer.getEmail(), customer.getId());
+	}
+	
+	@Override
+	public void updateSubscription(Customer customer) {
+		// TODO Auto-generated method stub
+		this.jdbcTemplate.update("update Customer set enrolledForPromotions = ? where id = ?", customer.getEnrolledForPromotions(), customer.getId());
+	}
 
+	@Override
+	public List<Booking> getAllBookings(String customerId) {
+		String query = "select * from Booking where customerID = ?";
+		List<Booking> bookings = jdbcTemplate.query(
+				query,
+				new Object[] {customerId},
+				new RowMapper<Booking>() {
+					public Booking mapRow(ResultSet rs, int rowNum) throws SQLException {
+						Booking b = new Booking();
+						b.setId(rs.getInt("id"));
+						b.setCustomerId(rs.getInt("customerID"));
+						b.setMovieId(rs.getInt("movieID"));
+						b.setCouponId(rs.getInt("promoId"));
+						b.setTotalPrice(rs.getDouble("totalPrice"));
+						b.setNumberOfTickets(rs.getInt("numTickets"));
+						b.setCreditCardNo(rs.getString("creditCardNo"));
+						b.setShowTimeId(rs.getInt("showtimeId"));
+						return b;
+					}
+				}
+		);
+		return bookings;
+	}
+
+	@Override
+	public List<Ticket> getAllTickets(String string, String bookingId) {
+		String query = "select * from Ticket where bookingId = ?";
+		List<Ticket> tickets = jdbcTemplate.query(
+				query,
+				new Object[] {bookingId},
+				new RowMapper<Ticket>() {
+					public Ticket mapRow(ResultSet rs, int rowNum) throws SQLException {
+						Ticket t = new Ticket();
+						t.setCategory(rs.getInt("ageCategoryID"));
+						t.setId(rs.getInt("id"));
+						t.setSeatId(rs.getInt("seatID"));
+						t.setMovieShowId(rs.getInt("movieShowID"));
+						t.setPrice(rs.getDouble("price"));
+						t.setBookingId(rs.getInt("bookingID"));
+						return t;
+					}
+				}
+		);
+		return tickets;
+	}
+
+	@Override
+	public Seat getSeat(String seatId) {
+		String query = "select * from Seat where id = ?";
+		Seat seat = jdbcTemplate.queryForObject(query, new Object[] {seatId}, new RowMapper<Seat>() {
+        	@Override
+        	public Seat mapRow(ResultSet rs, int rowNum) throws SQLException{
+        		Seat s = new Seat();
+        		s.setId(rs.getInt("id"));
+        		s.setHallId(rs.getInt("hallID"));
+        		s.setLocation(rs.getString("location"));
+        		return s;
+        	}
+        });
+        return seat;
+	}
+
+	@Override
+	public Showtime queryShowtimeObj(String showtimeId) {
+		
+		String query = "select * from Showtime where id = ?";
+		Showtime showtime = jdbcTemplate.queryForObject(query, new Object[] {showtimeId}, new RowMapper<Showtime>() {
+			@Override
+        	public Showtime mapRow(ResultSet rs, int rowNum) throws SQLException{
+				Showtime s = new Showtime();
+				s.setDate(rs.getDate("date").toString());
+				s.setTime(rs.getString("time"));
+				return s;
+			}
+		});
+		return showtime;
+	}
 
     @Override
     public int deleteUser(Integer id) {
@@ -209,5 +313,28 @@ public class CustomerDaoImpl implements ICustomerDao {
             return 0;
         }
     }
+
+	@Override
+	public void updateSeatStatus(String showtimeId, String seatId) {
+		String query = "update SeatShowtime set taken = '0' where showtimeID = ? and seatID = ?";
+		jdbcTemplate.update(query, showtimeId, seatId);
+	}
+
+	@Override
+	public void deleteTicket(String ticketId) {
+		// TODO Auto-generated method stub
+		String sql = "DELETE FROM Ticket WHERE id = ?";
+	    Object[] args = new Object[] {ticketId};
+	    jdbcTemplate.update(sql, args);
+		
+	}
+
+	@Override
+	public void deleteBooking(String bookingId) {
+		// TODO Auto-generated method stub
+		String sql = "DELETE FROM Booking WHERE id = ?";
+	    Object[] args = new Object[] {bookingId};
+	    jdbcTemplate.update(sql, args);
+	}
 
 }

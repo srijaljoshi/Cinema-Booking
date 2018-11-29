@@ -68,16 +68,14 @@ public class BookingServiceImpl implements IBookingService{
 
 	@Override
 	public int addBookingWithPromo(String customerId, String promoId, String movieId, String creditNumber,
-			String totalPrice, String numberOfTickets) {
-		return bookingDao.updateBookingWithPromo(customerId, promoId, movieId, creditNumber, totalPrice, numberOfTickets);
-		
+			String totalPrice, String numberOfTickets, String showtimeId) {
+		return bookingDao.updateBookingWithPromo(customerId, promoId, movieId, creditNumber, totalPrice, numberOfTickets, showtimeId);
 	}
 
 	@Override
 	public int addBookingNoPromo(String customerId, String movieId, String creditNumber, String totalPrice,
-			String numberOfTickets) {
-		return bookingDao.updateBookingNoPromo(customerId, movieId, creditNumber, totalPrice, numberOfTickets);
-		
+			String numberOfTickets, String showtimeId) {
+		return bookingDao.updateBookingNoPromo(customerId, movieId, creditNumber, totalPrice, numberOfTickets, showtimeId);
 	}
 
 	@Override

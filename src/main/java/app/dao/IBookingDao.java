@@ -31,10 +31,10 @@ public interface IBookingDao {
 	public int querySeatId(String hallId, String location);
 
 	public int updateBookingWithPromo(String customerId, String promoId, String movieId, String creditNumber,
-			String totalPrice, String numberOfTickets);
+			String totalPrice, String numberOfTickets, String showtimeId);
 
 	public int updateBookingNoPromo(String customerId, String movieId, String creditNumber, String totalPrice,
-			String numberOfTickets);
+			String numberOfTickets, String showtimeId);
 
 	public int queryCard(String creditNumber);
 

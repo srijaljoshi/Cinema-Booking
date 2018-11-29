@@ -1,6 +1,10 @@
 package app.dao;
 
+import app.models.Booking;
 import app.models.Customer;
+import app.models.Seat;
+import app.models.Showtime;
+import app.models.Ticket;
 
 import java.util.List;
 
@@ -59,5 +63,28 @@ public interface ICustomerDao {
 	
 	public String updateToken(Customer customer);
 
+	public List<Booking> getAllBookings(String customerId);
+
+	public List<Ticket> getAllTickets(String string, String bookingId);
+
+	public Seat getSeat(String seatId);
+
+	public Showtime queryShowtimeObj(String showtimeId);
+
     int deleteUser(Integer id);
+
+	public void updateSeatStatus(String showtimeId, String seatId);
+
+	public void deleteTicket(String ticketId);
+
+	public void deleteBooking(String bookingId);
+
+	String updateFirstName(Customer customer);
+
+	public void updateLastName(Customer customer);
+	
+	public void updateEmailName(Customer customer);
+
+	public void updateSubscription(Customer customer);
+	
 }

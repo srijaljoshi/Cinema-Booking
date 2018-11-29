@@ -3,7 +3,12 @@ package app.service;
 import app.dao.IAddressDao;
 import app.dao.ICustomerDao;
 import app.models.Address;
+import app.models.Booking;
 import app.models.Customer;
+import app.models.Seat;
+import app.models.Showtime;
+import app.models.Ticket;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,4 +87,65 @@ public class CustomerServiceImpl implements ICustomerService {
 	public String updateToken(Customer customer) {
 		return customerDao.updateToken(customer);
 	}
+
+	@Override
+	public List<Booking> getBooking(String customerId) {
+		return customerDao.getAllBookings(customerId);
+	}
+
+	@Override
+	public List<Ticket> getTickets(String string, String bookingId) {
+		return customerDao.getAllTickets(string, bookingId);
+	}
+
+	@Override
+	public Seat getSeat(String seatId) {
+		return customerDao.getSeat(seatId);
+	}
+	
+	@Override
+	public Showtime queryShowtime(String showtimeId) {
+		return customerDao.queryShowtimeObj(showtimeId);
+	}
+
+	@Override
+	public void updateSeatStatus(String showtimeId, String seatId) {
+		customerDao.updateSeatStatus(showtimeId, seatId);
+	}
+
+	@Override
+	public void removeTicket(String ticketId) {
+		// TODO Auto-generated method stub
+		customerDao.deleteTicket(ticketId);
+	}
+
+	@Override
+	public void removeBooking(String bookingId) {
+		// TODO Auto-generated method stub
+		customerDao.deleteBooking(bookingId);
+	}
+
+	@Override
+	public String updateFirstName(Customer customer) {
+		return customerDao.updateFirstName(customer);
+	}
+
+	@Override
+	public void updateLastName(Customer customer) {
+		// TODO Auto-generated method stub
+		customerDao.updateLastName(customer);
+	}
+
+	@Override
+	public void updateEmail(Customer customer) {
+		customerDao.updateEmailName(customer);
+	}
+
+	@Override
+	public void updateSubscription(Customer customer) {
+		customerDao.updateSubscription(customer);
+		
+	}
+
+	
 }

@@ -30,8 +30,8 @@
     <div class="row">
         <div class="col-md-12">
             <form action="/u/book" method="get">
-                <p>Movie Id:</p>
-                <input type="number" name="movieId" value="${movie.id}"/>
+                
+                <input type="hidden" name="movieId" value="${movie.id}"/>
                 <p>Select Date</p>
                 <input type="date" name="date" id="inputDate"><br>
                 <p>Select show time: </p>
